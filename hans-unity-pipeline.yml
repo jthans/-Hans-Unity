@@ -1,0 +1,29 @@
+# Build Pipeline for Unity Packages
+# Held Separate - Testing is Different, NuGet is diffferent.
+
+pool:
+  vmImage: 'VS2017-Win2016'
+
+variables:
+  solution: 'Unity/**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+steps:
+- task: NuGetToolInstaller@0
+
+# Restore Nuget Packages
+- task: NuGetCommand@2
+  displayName: 'NuGet Restore'
+  inputs:
+    feedsToUse: config
+    nugetConfigPath: '../nuget.config'
+    restoreSolution: '$(solution)'
+
+# Build Solution Files
+- task: VSBuild@1
+  displayName: '.Net Build'
+  inputs:
+    solution: '$(solution)'
+    platform: '$(buildPlatform)'
+    configuration: '$(buildConfiguration)'
