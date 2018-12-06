@@ -17,7 +17,7 @@ steps:
   displayName: 'NuGet Restore'
   inputs:
     feedsToUse: config
-    nugetConfigPath: 'nuget.config'
+    nugetConfigPath: '**/nuget.config'
     restoreSolution: '$(solution)'
 
 # Build Solution Files
