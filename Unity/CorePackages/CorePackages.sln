@@ -1,11 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.8
-MinimumVisualStudioVersion = 10.0.40219.1
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{BFC9B2D2-13EB-A19C-C38E-1B3060DC3024}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hans.Logging.Unity", "Libraries\Hans.Logging.Unity\Hans.Logging.Unity.csproj", "{B76C7A9B-BE39-4462-9356-0B738C76D42D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,16 +13,9 @@ Global
 		{BFC9B2D2-13EB-A19C-C38E-1B3060DC3024}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BFC9B2D2-13EB-A19C-C38E-1B3060DC3024}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BFC9B2D2-13EB-A19C-C38E-1B3060DC3024}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B76C7A9B-BE39-4462-9356-0B738C76D42D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B76C7A9B-BE39-4462-9356-0B738C76D42D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B76C7A9B-BE39-4462-9356-0B738C76D42D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B76C7A9B-BE39-4462-9356-0B738C76D42D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {4D54D7E7-A253-4BCA-8F01-4B1D1DFF10F6}
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
