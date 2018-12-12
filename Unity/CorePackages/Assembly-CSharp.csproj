@@ -55,7 +55,8 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Constants\ButtonNames.cs" />
      <Compile Include="Assets\Scripts\Enums\Direction.cs" />
-     <Compile Include="Assets\Scripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\MouseLookComponent.cs" />
+     <Compile Include="Assets\Scripts\MovementComponent.cs" />
  <Reference Include="UnityEditor.StandardEvents">
  <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
@@ -266,14 +267,14 @@
  <Reference Include="UnityEngine.SpatialTracking">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
+ <Reference Include="Hans.Extensions">
+ <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Extensions.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/taylo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/Users/taylo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="Hans.Extensions">
- <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

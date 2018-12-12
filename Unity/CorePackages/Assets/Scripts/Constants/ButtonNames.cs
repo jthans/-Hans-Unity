@@ -19,6 +19,16 @@ public class ButtonNames
     public const string Left = "Left";
 
     /// <summary>
+    ///  MouseX - Mouse X
+    /// </summary>
+    public const string MouseX = "Mouse X";
+
+    /// <summary>
+    ///  MouseY - Mouse Y
+    /// </summary>
+    public const string MouseY = "Mouse Y";
+
+    /// <summary>
     ///  Right - Right
     /// </summary>
     public const string Right = "Right";
