@@ -12,6 +12,16 @@
 		#region Fields
 
 		/// <summary>
+		///  If the object is jumping currently, meaning not on the ground, or triggering a jump this frame.
+		/// </summary>
+		private bool _isGrounded = false;
+
+		/// <summary>
+		///  Indicates the number of jumps that have been taken by this object. This is tracked to support multiple jumps in one.
+		/// </summary>
+		private int _numJumps = 0;
+
+		/// <summary>
 		///  Enum of 4 directions (Forward/Backward/Left/Right) to track which direction is moving at any given time.  Pulling this out allows easy debugging/reporting,
 		/// 	as this will always give the enabled directions, as well as ways to intercept this data if necessary.  This enum stores combinations of the flags as necessary.
 		/// </summary>
@@ -20,6 +30,21 @@
         #endregion
 
         #region Properties/Configuration
+
+		/// <summary>
+		///  How many times the character may jump at once.
+		/// </summary>
+		public int AllowedJumps = 1;
+
+		/// <summary>
+		///  Whether or not we'll allow the character to jump from the air, or if it needs ground.
+		/// </summary>
+		public bool AllowJumpWhileFloating = false;
+
+		/// <summary>
+		///  How high the character jumps.
+		/// </summary>
+		public float JumpHeight = 1.0f;
 
         /// <summary>
         ///  How fast the character walks.
@@ -30,6 +55,14 @@
 		#endregion
 
 		#region Unity Methods
+		
+		/// <summary>
+		///  Called before the scene starts processing, but when we can initialize components of our object.true  Used for initialization that doesn't
+		/// 	require access to other objects in the scene.
+		/// </summary>
+		void Awake() {
+			this.InitializeLocal();
+		}
 
 		/// <summary>
 		///  Called the same number of times per second - This is where the bulk of our calculations will be done, to avoid more performant computers
@@ -37,6 +70,14 @@
 		/// </summary>
 		void FixedUpdate() {
 			this.ProcessMovement();
+		}
+
+		/// <summary>
+		///  Called when a collion is considered "stayed" or consistent. This tells us that our object is on the ground, and isn't considered floating.
+		/// </summary>
+		void OnCollisionStay() {
+			this._isGrounded = true;
+			this._numJumps = 0;
 		}
 		
 		/// <summary>
@@ -60,6 +101,10 @@
             this._objectDirection = Input.GetButton(ButtonNames.Backward) ? this._objectDirection |= Direction.Backwards : this._objectDirection &= ~Direction.Backwards;
             this._objectDirection = Input.GetButton(ButtonNames.Left) ? this._objectDirection |= Direction.Left : this._objectDirection &= ~Direction.Left;
             this._objectDirection = Input.GetButton(ButtonNames.Right) ? this._objectDirection |= Direction.Right : this._objectDirection &= ~Direction.Right;
+
+			// Update Jump Status
+			this._isGrounded = !Input.GetButtonDown(ButtonNames.Jump) && 
+								(this._isGrounded || this.AllowJumpWhileFloating);
         }
 
 		/// <summary>
@@ -70,6 +115,8 @@
             // Get the directional vectors for this object.
             var forwardVector = this.gameObject.transform.forward;
             var rightVector = this.gameObject.transform.right;
+
+			#region Movement
 
 			var objectVector = this.gameObject.transform.position;
 
@@ -98,6 +145,27 @@
 			}
 
 			this.gameObject.transform.position = objectVector;
+
+			#endregion
+
+#region Jumping
+
+			if (!this._isGrounded && this._numJumps < this.AllowedJumps)
+			{
+				this.GetComponent<Rigidbody>().AddForce(Vector3.up * this.JumpHeight, ForceMode.Impulse);
+				this._numJumps++;
+			}
+
+#endregion
+		}
+
+		/// <summary>
+		///	 Initializes values necessary to this object only, without reference to other objects in the scene.
+		/// </summary>
+		private void InitializeLocal()
+		{
+			// This line exists to prevent an object from jumping as soon as the scene starts.
+			this._numJumps = this.AllowedJumps;
 		}
 
 		#endregion

@@ -19,6 +19,11 @@ public class ButtonNames
     public const string Left = "Left";
 
     /// <summary>
+    ///  Jump - Jump
+    /// </summary>
+    public const string Jump = "Jump";
+
+    /// <summary>
     ///  MouseX - Mouse X
     /// </summary>
     public const string MouseX = "Mouse X";
