@@ -11,10 +11,17 @@
 	{
 		#region Fields
 
+		private object _collisionLock;
+
+		/// <summary>
+		///  If the object is located on the ground.
+		/// </summary>
+		private bool _isGrounded = false;
+
 		/// <summary>
 		///  If the object is jumping currently, meaning not on the ground, or triggering a jump this frame.
 		/// </summary>
-		private bool _isGrounded = false;
+		private bool _isJumping = false;
 
 		/// <summary>
 		///  Indicates the number of jumps that have been taken by this object. This is tracked to support multiple jumps in one.
@@ -73,11 +80,25 @@
 		}
 
 		/// <summary>
+		///  Called when a collion is considered "exited", or over - Meaning they fell off the land.
+		/// </summary>
+		void OnCollisionExit() {
+			if (!this._isJumping)
+			{
+				this._isGrounded = false;
+				this._numJumps = 1; // We start this at 1 jump, so we can't save ourselves if we're careless.
+			}
+		}
+
+		/// <summary>
 		///  Called when a collion is considered "stayed" or consistent. This tells us that our object is on the ground, and isn't considered floating.
 		/// </summary>
 		void OnCollisionStay() {
-			this._isGrounded = true;
-			this._numJumps = 0;
+			if (!this._isJumping)
+			{
+				this._isGrounded = true;
+				this._numJumps = 0;
+			}
 		}
 		
 		/// <summary>
@@ -96,15 +117,17 @@
         /// </summary>
         private void ProcessInput()
         {
-            // Update Directional Buttons, based on whether the input is selected on the input or not.
-            this._objectDirection = Input.GetButton(ButtonNames.Forward) ? this._objectDirection |= Direction.Forwards : this._objectDirection &= ~Direction.Forwards;
-            this._objectDirection = Input.GetButton(ButtonNames.Backward) ? this._objectDirection |= Direction.Backwards : this._objectDirection &= ~Direction.Backwards;
-            this._objectDirection = Input.GetButton(ButtonNames.Left) ? this._objectDirection |= Direction.Left : this._objectDirection &= ~Direction.Left;
-            this._objectDirection = Input.GetButton(ButtonNames.Right) ? this._objectDirection |= Direction.Right : this._objectDirection &= ~Direction.Right;
+			if (this._isGrounded)
+			{
+				// Update Directional Buttons, based on whether the input is selected on the input or not.
+				this._objectDirection = Input.GetButton(ButtonNames.Forward) ? this._objectDirection |= Direction.Forwards : this._objectDirection &= ~Direction.Forwards;
+				this._objectDirection = Input.GetButton(ButtonNames.Backward) ? this._objectDirection |= Direction.Backwards : this._objectDirection &= ~Direction.Backwards;
+				this._objectDirection = Input.GetButton(ButtonNames.Left) ? this._objectDirection |= Direction.Left : this._objectDirection &= ~Direction.Left;
+				this._objectDirection = Input.GetButton(ButtonNames.Right) ? this._objectDirection |= Direction.Right : this._objectDirection &= ~Direction.Right;
+			}
 
 			// Update Jump Status
-			this._isGrounded = !Input.GetButtonDown(ButtonNames.Jump) && 
-								(this._isGrounded || this.AllowJumpWhileFloating);
+			this._isJumping = this._isJumping || Input.GetButtonDown(ButtonNames.Jump);
         }
 
 		/// <summary>
@@ -150,10 +173,15 @@
 
 #region Jumping
 
-			if (!this._isGrounded && this._numJumps < this.AllowedJumps)
+			if (this._isJumping && this._numJumps < this.AllowedJumps)
 			{
-				this.GetComponent<Rigidbody>().AddForce(Vector3.up * this.JumpHeight, ForceMode.Impulse);
+				var charComponent = this.GetComponent<Rigidbody>();
+
+				// Add an upward force with the magnitude configured.
+				charComponent.AddForce(Vector3.up * this.JumpHeight, ForceMode.Impulse);
 				this._numJumps++;
+
+				this._isJumping = false;
 			}
 
 #endregion
