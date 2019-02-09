@@ -54,7 +54,10 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Constants\ButtonNames.cs" />
+     <Compile Include="Assets\Scripts\Core\Singleton.cs" />
      <Compile Include="Assets\Scripts\Enums\Direction.cs" />
+     <Compile Include="Assets\Scripts\Inventory\InventoryItem.cs" />
+     <Compile Include="Assets\Scripts\Inventory\InventoryManager.cs" />
      <Compile Include="Assets\Scripts\MouseLookComponent.cs" />
      <Compile Include="Assets\Scripts\MovementComponent.cs" />
  <Reference Include="UnityEditor.StandardEvents">
