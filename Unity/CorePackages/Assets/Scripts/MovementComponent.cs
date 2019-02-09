@@ -7,6 +7,7 @@
     /// <summary>
     ///  MovementComponent class, used to allow player input into the character's avatar to move/interact with the space/etc.
     /// </summary>
+	[RequireComponent(typeof(Rigidbody))]
     public class MovementComponent : MonoBehaviour 
 	{
 		#region Fields
