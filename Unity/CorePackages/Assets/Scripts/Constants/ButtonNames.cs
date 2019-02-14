@@ -14,6 +14,11 @@ public class ButtonNames
     public const string Forward = "Forward";
 
     /// <summary>
+    ///  Interact - Interact
+    /// </summary>
+    public const string Interact = "Interact";
+
+    /// <summary>
     ///  Left - Left
     /// </summary>
     public const string Left = "Left";

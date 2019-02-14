@@ -92,12 +92,14 @@ namespace Assets.Scripts.Core.Raycasting
         /// <summary>
         ///  Builds a payload to send to useful subscribers with information pertaining to the raycast.
         /// </summary>
+        /// <param name="rayHit">The raycast object, to pull info from.</param>
         /// <returns>A payload containing important information about the raycast.</returns>
-        private RaycastBeginPayload BuildPayload()
+        private RaycastBeginPayload BuildPayload(RaycastHit rayHit)
         {
             return new RaycastBeginPayload()
             {
-                CallingObject = this
+                CallingObject = this,
+                FocusedObject = rayHit.collider.gameObject
             };
         }
 
@@ -108,7 +110,7 @@ namespace Assets.Scripts.Core.Raycasting
         private void ProcessRaycastHit(RaycastHit rayHit, bool isFirstHit)
         {
             // Get the generic payload.
-            var enterPayload = this.BuildPayload();
+            var enterPayload = this.BuildPayload(rayHit);
 
             if (isFirstHit)
             {
@@ -138,9 +140,10 @@ namespace Assets.Scripts.Core.Raycasting
         private void UpdateDetectedObject(int detectedGO)
         {
             // We're leaving an object - Throw an event if so.
-            if (this.lastGameObjectDetected >= 0)
+            if (this.lastGameObjectDetected >= 0 &&
+                this.OnRaycastEnded != null) // Only throw if we have subscribers to this event.
             {
-                OnRaycastEnded();
+                this.OnRaycastEnded();
             }
 
             this.lastGameObjectDetected = detectedGO;

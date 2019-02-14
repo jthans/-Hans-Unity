@@ -22,7 +22,7 @@ namespace Assets.Scripts.Core
         /// <summary>
         ///  Used for initialization - Called before the scene loads/starts rendering.
         /// </summary>
-        protected void Awake()
+        protected virtual void Awake()
         {
             this.SetSingleton();
         }

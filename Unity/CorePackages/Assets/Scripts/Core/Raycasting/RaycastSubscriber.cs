@@ -1,8 +1,8 @@
-﻿using System;
-using Assets.Scripts.Enums;
+﻿using Assets.Scripts.Enums;
 using UnityEngine;
 using Assets.Scripts.Core.Raycasting.Models;
 using System.Threading;
+using Hans.Logging;
 
 namespace Assets.Scripts.Core.Raycasting
 {
@@ -29,9 +29,36 @@ namespace Assets.Scripts.Core.Raycasting
         #region Internal Fields
 
         /// <summary>
+        ///  The currently focused gameObject, tracked if something is being viewed.
+        /// </summary>
+        protected GameObject focusedGameObject;
+
+        /// <summary>
+        ///  Indicates if this subscriber currently holds the gaze passed by the raycaster, determined on a gameObject being held.
+        /// </summary>
+        protected bool hasGaze { get { return this.focusedGameObject != null; } }
+
+        /// <summary>
         ///  The last calling raycaster, so we can unsubscribe from the exit event once it's complete.
         /// </summary>
         private Raycaster lastCallingRaycaster;
+
+        /// <summary>
+        ///  Logger class used to export information about this subscriber to the Unity Engine.
+        /// </summary>
+        protected Hans.Logging.Interfaces.ILogger log;
+
+        #endregion
+
+        #region Unity Methods
+
+        /// <summary>
+        ///  Called in Unity for Initialization.
+        /// </summary>
+        protected void Awake()
+        {
+            this.log = LoggerManager.CreateLogger(this.GetType());
+        }
 
         #endregion
 
@@ -46,6 +73,8 @@ namespace Assets.Scripts.Core.Raycasting
             this.lastCallingRaycaster = enterPayload.CallingObject;
             this.lastCallingRaycaster.OnRaycastEnded += this.OnRaycastExit;
 
+            this.focusedGameObject = enterPayload.FocusedObject;
+
             // Call the logic asynronously for this subscriber.
             new Thread(this.RaycastStarted).Start();
         }
@@ -59,6 +88,8 @@ namespace Assets.Scripts.Core.Raycasting
             this.lastCallingRaycaster.OnRaycastEnded -= this.OnRaycastExit;
             this.lastCallingRaycaster = null;
 
+            this.focusedGameObject = null;
+
             // Call the logic syncronously for this subscriber.
             new Thread(this.RaycastEnded).Start();
         }
@@ -66,19 +97,19 @@ namespace Assets.Scripts.Core.Raycasting
         #endregion
 
         /// <summary>
-        ///  When a raycast starts, we'll perform these actions in the background.
+        ///  When a raycast ends, we'll perform these actions in the background.
         /// </summary>
         protected virtual void RaycastEnded()
         {
-            Debug.Log("End");
+            this.log.LogMessage("EndRaycast");
         }
 
         /// <summary>
-        ///  WHen a raycast ends on our object, we'll perform these actions in the background.
+        ///  When a raycast starts on our object, we'll perform these actions in the background.
         /// </summary>
         protected virtual void RaycastStarted()
         {
-            Debug.Log("Start");
+            this.log.LogMessage("StartRaycast");
         }
     }
 }
