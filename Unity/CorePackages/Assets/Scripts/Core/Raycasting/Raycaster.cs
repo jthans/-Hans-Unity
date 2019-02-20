@@ -1,4 +1,6 @@
 ﻿using Assets.Scripts.Core.Raycasting.Models;
+using Hans.Logging;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -43,6 +45,11 @@ namespace Assets.Scripts.Core.Raycasting
         ///  Saves the last game object that was seen by this raycaster.
         /// </summary>
         private int lastGameObjectDetected = -1;
+
+        /// <summary>
+        ///  Logger used to import useful information about the class.
+        /// </summary>
+        private readonly Hans.Logging.Interfaces.ILogger log = LoggerManager.CreateLogger(typeof(Raycaster));
 
 
         #endregion
@@ -109,27 +116,34 @@ namespace Assets.Scripts.Core.Raycasting
         /// <param name="rayHit"></param>
         private void ProcessRaycastHit(RaycastHit rayHit, bool isFirstHit)
         {
-            // Get the generic payload.
-            var enterPayload = this.BuildPayload(rayHit);
-
-            if (isFirstHit)
+            try
             {
-                // Handle Tag Searches First, as these will be more common.
-                var tagSubscribers = this.Subscribers.Where(x => x.Type == Enums.RaycastSubscriptionType.Tag &&
-                                                                 x.Value == rayHit.collider.gameObject.tag);
-                foreach (var sub in tagSubscribers)
-                {
-                    sub.OnRaycastEnter(enterPayload);
-                }
+                // Get the generic payload.
+                var enterPayload = this.BuildPayload(rayHit);
 
-                // Handle Name Subscribers, next, these are very specific cases.
-                var nameSubscribers = this.Subscribers.Where(x => x.Type == Enums.RaycastSubscriptionType.Name &&
-                                                                  x.Value == rayHit.collider.gameObject.name);
-
-                foreach (var sub in nameSubscribers)
+                if (isFirstHit)
                 {
-                    sub.OnRaycastEnter(enterPayload);
+                    // Handle Tag Searches First, as these will be more common.
+                    var tagSubscribers = this.Subscribers.Where(x => x.Type == Enums.RaycastSubscriptionType.Tag &&
+                                                                     x.Value == rayHit.collider.gameObject.tag);
+                    foreach (var sub in tagSubscribers)
+                    {
+                        sub.OnRaycastEnter(enterPayload);
+                    }
+
+                    // Handle Name Subscribers, next, these are very specific cases.
+                    var nameSubscribers = this.Subscribers.Where(x => x.Type == Enums.RaycastSubscriptionType.Name &&
+                                                                      x.Value == rayHit.collider.gameObject.name);
+
+                    foreach (var sub in nameSubscribers)
+                    {
+                        sub.OnRaycastEnter(enterPayload);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                this.log.LogMessage($"Exception Processing Raycast: { ex.ToString() };");
             }
         }
 

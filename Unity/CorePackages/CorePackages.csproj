@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -299,6 +299,9 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
+ <Reference Include="Hans.DependencyInjection">
+ <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DependencyInjection.dll</HintPath>
+ </Reference>
  <Reference Include="Hans.Extensions">
  <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Extensions.dll</HintPath>
  </Reference>
@@ -307,6 +310,9 @@
  </Reference>
  <Reference Include="Hans.Logging">
  <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Logging.dll</HintPath>
+ </Reference>
+ <Reference Include="System.ComponentModel.Composition">
+ <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Libraries/System.ComponentModel.Composition.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>C:/Users/taylo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -322,12 +328,6 @@
  </Reference>
  <Reference Include="UnityEngine.StandardEvents">
  <HintPath>C:/Users/taylo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
- </Reference>
- <Reference Include="System.ComponentModel.Composition">
- <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Libraries/System.ComponentModel.Composition.dll</HintPath>
- </Reference>
- <Reference Include="Hans.DependencyInjection">
- <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DependencyInjection.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

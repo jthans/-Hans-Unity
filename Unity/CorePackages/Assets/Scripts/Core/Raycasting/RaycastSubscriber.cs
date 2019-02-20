@@ -1,7 +1,6 @@
 ﻿using Assets.Scripts.Enums;
 using UnityEngine;
 using Assets.Scripts.Core.Raycasting.Models;
-using System.Threading;
 using Hans.Logging;
 
 namespace Assets.Scripts.Core.Raycasting
@@ -50,12 +49,12 @@ namespace Assets.Scripts.Core.Raycasting
 
         #endregion
 
-        #region Unity Methods
+        #region Constructors
 
         /// <summary>
-        ///  Called in Unity for Initialization.
+        ///  Initializes a new instance of the <see cref="RaycastSubscriber" /> class.
         /// </summary>
-        protected void Awake()
+        public RaycastSubscriber()
         {
             this.log = LoggerManager.CreateLogger(this.GetType());
         }
@@ -76,7 +75,7 @@ namespace Assets.Scripts.Core.Raycasting
             this.focusedGameObject = enterPayload.FocusedObject;
 
             // Call the logic asynronously for this subscriber.
-            new Thread(this.RaycastStarted).Start();
+            this.RaycastStarted();
         }
 
         /// <summary>
@@ -84,14 +83,14 @@ namespace Assets.Scripts.Core.Raycasting
         /// </summary>
         public void OnRaycastExit()
         {
+            // Call the logic syncronously for this subscriber.
+            this.RaycastEnded();
+
             // Unsubscribe from further exit events.
             this.lastCallingRaycaster.OnRaycastEnded -= this.OnRaycastExit;
             this.lastCallingRaycaster = null;
 
             this.focusedGameObject = null;
-
-            // Call the logic syncronously for this subscriber.
-            new Thread(this.RaycastEnded).Start();
         }
 
         #endregion

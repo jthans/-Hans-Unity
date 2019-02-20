@@ -1,6 +1,7 @@
 using Assets.Scripts.Core.Raycasting;
 using Assets.Scripts.EntityManagement;
 using Assets.Scripts.InventorySystem;
+using UnityEngine;
 
 namespace Hans.Unity.Core.Raycasting 
 {
