@@ -49,7 +49,7 @@ namespace Assets.Scripts.Core.Raycasting
         /// <summary>
         ///  Logger used to import useful information about the class.
         /// </summary>
-        private readonly Hans.Logging.Interfaces.ILogger log = LoggerManager.CreateLogger(typeof(Raycaster));
+        private Hans.Logging.Interfaces.ILogger log;
 
 
         #endregion
@@ -85,11 +85,18 @@ namespace Assets.Scripts.Core.Raycasting
                 this.UpdateDetectedObject(detectedGO);
             }
 
+#if UNITY_EDITOR
             // If debugging is enabled, draw a line that's visible to the player.
             if (this.DebuggerLineEnabled)
             {
                 Debug.DrawRay(this.transform.position, this.transform.TransformDirection(Vector3.forward) * rayDistance, Color.red);
+#endif
             }
+        }
+
+        void Start()
+        {
+             this.log = LoggerManager.CreateLogger(typeof(Raycaster));
         }
 
         #endregion

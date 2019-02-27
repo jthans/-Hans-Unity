@@ -1,18 +1,19 @@
 ﻿using Hans.Inventory.Core.Interfaces;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts.InventorySystem.Item_Management
 {
     /// <summary>
     ///  Object that represents a lookup table for the inventory - Loaded on scene load, and will be accessed for all inventory processes.
     /// </summary>
-    public class InventoryLookupTable
+    public class InventoryLookupTable : MonoBehaviour
     {
         /// <summary>
         ///  Lookup dictionary, created in the constructor and used as a way to easily access item information in the inventory's system.  Can
         ///     easily use a script to auto-generate these classes, and their data from another source.
         /// </summary>
-        private Dictionary<string, IIInventoryItem> _inventoryLookup;
+        protected Dictionary<string, IIInventoryItem> _inventoryLookup;
 
         /// <summary>
         ///  Indexer that allows easy access to this lookup table.

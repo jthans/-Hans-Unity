@@ -49,12 +49,12 @@ namespace Assets.Scripts.Core.Raycasting
 
         #endregion
 
-        #region Constructors
+        #region Unity Methods
 
         /// <summary>
         ///  Initializes a new instance of the <see cref="RaycastSubscriber" /> class.
         /// </summary>
-        public RaycastSubscriber()
+        void Start()
         {
             this.log = LoggerManager.CreateLogger(this.GetType());
         }

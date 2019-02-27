@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.Core;
+using Hans.DependencyInjection;
 using Hans.Logging;
 using System;
+using UnityEngine;
 
 /// <summary>
 ///  The <see cref="CoreManager" /> class is used in every Unity scene that uses -Hans-Unity/CorePackages assets or objects.  This sets up the critical 
@@ -17,32 +19,27 @@ public class CoreManager : Singleton<CoreManager>
     public Guid SessionID { get; set; }
 
     #endregion
-
-    #region Unity Methods
-
-    /// <summary>
-    ///  Called on creation, we'll do any initialization here.
-    /// </summary>
-    protected override void Awake()
-    {
-        base.Awake();
-        this.InitializeScene();
-	}
-
-    #endregion
-
+    
     #region Internal Methods
 
     /// <summary>
     ///  Initializes a scene with -Hans-Unity specific instructions and benefits.
     /// </summary>
-    private void InitializeScene()
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+    static void InitializeScene()
     {
-        // Session
-        this.SessionID = Guid.NewGuid();
+#if UNITY_EDITOR
+
+        // Dependency Injection
+        MEFBootstrapper.RegisterPath(UnityEngine.Application.dataPath + "/../Library/ScriptAssemblies");
+
+#endif
+
+        MEFBootstrapper.Build();
 
         // Logging
         LoggerManager.StartLogging();
+        LoggerManager.CreateLogger(typeof(CoreManager)).LogMessage($"Initialization Complete.");
     }
 
     #endregion

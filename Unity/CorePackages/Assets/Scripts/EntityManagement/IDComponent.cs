@@ -12,6 +12,6 @@ namespace Assets.Scripts.EntityManagement
         /// <summary>
         ///  The actual ID property, containing the identifier.
         /// </summary>
-        public string ID { get; set; }
+        public string ID;
     }
 }

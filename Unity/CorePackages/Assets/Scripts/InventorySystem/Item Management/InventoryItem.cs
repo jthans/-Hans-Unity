@@ -1,22 +1,29 @@
 ﻿using System;
 using Hans.Inventory.Core.Interfaces;
-using UnityEngine;
 
 namespace Assets.Scripts.InventorySystem
 {
     /// <summary>
     ///  Class representing an inventory item
     /// </summary>
-    public class InventoryItem : MonoBehaviour
+    public class InventoryItem : IIInventoryItem
     {
         /// <summary>
-        ///  ID of the item, used to reference this item from many different places.
+        ///  ID of the Item.
         /// </summary>
-        public Guid Id { get { return this.Information.Id; } }
+        public Guid Id { get; set; }
 
         /// <summary>
-        ///  Class containing all information about the item, to track it within the inventory.
+        ///  Initializes a new instance of the inventory item, by generating a GUID to identify this GUID by.  Later, this ID needs to be
+        ///     changed to a string, or find a better way to generate the GUID.
         /// </summary>
-        public IIInventoryItem Information { get; set; }
+        /// <param name="itemId"></param>
+        public InventoryItem(string itemId)
+        {
+            byte[] bytes = new byte[16];
+            BitConverter.GetBytes(itemId.GetHashCode()).CopyTo(bytes, 0);
+
+            this.Id = new Guid(bytes);
+        }
     }
 }

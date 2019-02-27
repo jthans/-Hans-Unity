@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.EntityManagement;
+using UnityEngine;
 
 namespace Assets.Scripts.InventorySystem
 {
@@ -7,8 +8,9 @@ namespace Assets.Scripts.InventorySystem
     ///     will have a model associated, as well as a collider required that will allow a player to pick it up.
     /// </summary>
     [RequireComponent(typeof(Collider))]
+    [RequireComponent(typeof(IDComponent))]
     [RequireComponent(typeof(Rigidbody))]
-    public class ObtainableItem : InventoryItem
+    public class ObtainableItem : MonoBehaviour
     {
         #region Fields
 

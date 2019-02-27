@@ -19,7 +19,8 @@ namespace Hans.Unity.Core.Raycasting
         protected void FixedUpdate()
         {
             // If an item is interacted with while being looked at, add the item to the inventory.
-            if (UnityEngine.Input.GetKeyDown(ButtonNames.Interact))
+            if (this.hasGaze &&
+                UnityEngine.Input.GetButtonDown(ButtonNames.Interact))
             {
                 this.AddToPlayerInventory();
             }
@@ -34,7 +35,7 @@ namespace Hans.Unity.Core.Raycasting
         /// </summary>
         protected override void RaycastEnded()
         {
-            this.log.LogMessage($"EndRaycast for Item { this.focusedGameObject.name }.");
+            this.log.LogMessage($"EndRaycast for Item.");
         }
 
         /// <summary>
@@ -55,6 +56,11 @@ namespace Hans.Unity.Core.Raycasting
         private void AddToPlayerInventory()
         {
             var itemId = this.focusedGameObject.GetComponent<IDComponent>().ID;
+
+            // Get rid of the object, it's been "picked up".
+            Destroy(this.focusedGameObject);
+
+            // Add the item to the player's inventory.
             InventoryManager.Instance.AddItemToInventory(null, itemId);
         }
 

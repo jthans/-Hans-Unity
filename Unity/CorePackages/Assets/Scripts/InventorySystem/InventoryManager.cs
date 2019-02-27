@@ -31,9 +31,18 @@ namespace Assets.Scripts.InventorySystem
         /// <summary>
         ///  Logging class to output data about what's happening.
         /// </summary>
-        private ILogger _log = LoggerManager.CreateLogger(typeof(InventoryManager));
+        private ILogger _log;
 
-        #endregion 
+        #endregion
+
+        #region Unity Methods
+
+        void Start()
+        {
+            this._log = LoggerManager.CreateLogger(typeof(InventoryManager));
+        }
+
+        #endregion
 
         #region Protected Methods
 
@@ -66,7 +75,8 @@ namespace Assets.Scripts.InventorySystem
                 return;
             }
 
-            this._inventorySystem.AddItem(foundItem, quantity);   
+            this._inventorySystem.AddItem(foundItem, quantity);
+            UnityEngine.Debug.Log(this._inventorySystem.GetItemProfile(foundItem).TotalQuantity);
         }
 
         #endregion
