@@ -100,7 +100,7 @@ namespace Assets.Scripts.Core.Raycasting
         /// </summary>
         protected virtual void RaycastEnded()
         {
-            this.log.LogMessage("EndRaycast");
+            
         }
 
         /// <summary>
@@ -108,7 +108,7 @@ namespace Assets.Scripts.Core.Raycasting
         /// </summary>
         protected virtual void RaycastStarted()
         {
-            this.log.LogMessage("StartRaycast");
+            
         }
     }
 }
