@@ -7,6 +7,10 @@ public class ButtonNames
     ///  Backward - Backward
     /// </summary>
     public const string Backward = "Backward";
+    /// <summary>
+    ///  Crouch - Crouch/Slide
+    /// </summary>
+    public const string Crouch = "Crouch";
 
     /// <summary>
     ///  Forward - Forward
@@ -42,4 +46,9 @@ public class ButtonNames
     ///  Right - Right
     /// </summary>
     public const string Right = "Right";
+
+    /// <summary>
+    ///  Sprint - Sprint
+    /// </summary>
+    public const string Sprint = "Sprint";
 }

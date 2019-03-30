@@ -999,7 +999,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AllowedJumps: 2
   AllowJumpWhileFloating: 1
+  CrouchHeight: 0.65
+  CrouchMultiplier: 0.45
+  CrouchSpeed: 1.5
   JumpHeight: 4
+  SprintMultiplier: 1.8
   WalkSpeed: 3
 --- !u!136 &1829472483
 CapsuleCollider:

@@ -7,12 +7,26 @@
     /// <summary>
     ///  MovementComponent class, used to allow player input into the character's avatar to move/interact with the space/etc.
     /// </summary>
+	[RequireComponent(typeof(CapsuleCollider))]
 	[RequireComponent(typeof(Rigidbody))]
     public class MovementComponent : MonoBehaviour 
 	{
 		#region Fields
 
-		private object _collisionLock;
+		/// <summary>
+		///  The original height of the collider when the object is spawned.
+		/// </summary>
+		private float _colliderHeight = 0.0f;
+
+		/// <summary>
+		///  Tracker to indicate if the crouch has been updated or not.  We only want to animate if so.
+		/// </summary>
+		private bool _crouchUpdated = false;
+
+		/// <summary>
+		///  If the object is currently crouched/slowed.
+		/// </summary>
+		private bool _isCrouching = false;
 
 		/// <summary>
 		///  If the object is located on the ground.
@@ -23,6 +37,11 @@
 		///  If the object is jumping currently, meaning not on the ground, or triggering a jump this frame.
 		/// </summary>
 		private bool _isJumping = false;
+
+    	/// <summary>
+    	///  If the player should be sprinting currently.
+    	/// </summary>
+		private bool _isSprinting = false;
 
 		/// <summary>
 		///  Indicates the number of jumps that have been taken by this object. This is tracked to support multiple jumps in one.
@@ -50,9 +69,29 @@
 		public bool AllowJumpWhileFloating = false;
 
 		/// <summary>
+		///  How high the character still stands while crouching.
+		/// </summary>
+		public float CrouchHeight = 0.65f;
+
+		/// <summary>
+		///  How much slower the player moves while crouching.
+		/// </summary>
+		public float CrouchMultiplier = 0.65f;
+
+		/// <summary>
+		///  How quickly (s) the player crouches.
+		/// </summary>
+		public float CrouchSpeed = 0.5f;
+
+		/// <summary>
 		///  How high the character jumps.
 		/// </summary>
 		public float JumpHeight = 1.0f;
+
+    	/// <summary>
+    	///  How much faster the player runs, when the Sprint button is held.
+    	/// </summary>
+		public float SprintMultiplier = 1.5f;
 
         /// <summary>
         ///  How fast the character walks.
@@ -125,10 +164,22 @@
 				this._objectDirection = Input.GetButton(ButtonNames.Backward) ? this._objectDirection |= Direction.Backwards : this._objectDirection &= ~Direction.Backwards;
 				this._objectDirection = Input.GetButton(ButtonNames.Left) ? this._objectDirection |= Direction.Left : this._objectDirection &= ~Direction.Left;
 				this._objectDirection = Input.GetButton(ButtonNames.Right) ? this._objectDirection |= Direction.Right : this._objectDirection &= ~Direction.Right;
+
 			}
 
+			// See if the player is crouching or sprinting.
+			var localCrouch = this._isCrouching;
+			this._isCrouching = Input.GetButton(ButtonNames.Crouch) && !this._isJumping;
+
+			if (localCrouch != this._isCrouching)
+			{
+				this._crouchUpdated = true;
+			}
+
+			this._isSprinting = Input.GetButton(ButtonNames.Sprint) && this._isGrounded && !this._isCrouching;
+
 			// Update Jump Status
-			this._isJumping = this._isJumping || Input.GetButtonDown(ButtonNames.Jump);
+			this._isJumping = Input.GetButtonDown(ButtonNames.Jump);
         }
 
 		/// <summary>
@@ -142,12 +193,19 @@
 
 			#region Movement
 
-			var objectVector = this.gameObject.transform.position;
+			var objectVector = Vector3.zero; // this.gameObject.transform.position;
 
 			// Forwards
 			if (this._objectDirection.IsFlagSet(Direction.Forwards))
 			{
-                objectVector += forwardVector * this.WalkSpeed * Time.fixedDeltaTime;
+				var movementVector = forwardVector * this.WalkSpeed * Time.fixedDeltaTime;
+
+				if (this._isSprinting)
+				{
+					movementVector *= this.SprintMultiplier;
+				}
+
+                objectVector += movementVector;
 			}
 
 			// Backwards
@@ -168,7 +226,31 @@
 				objectVector += rightVector * this.WalkSpeed * Time.fixedDeltaTime;
 			}
 
-			this.gameObject.transform.position = objectVector;
+#region Crouching
+
+			if (this._crouchUpdated)
+			{
+				var capsuleCollider = this.GetComponent<CapsuleCollider>();
+				if (this._isCrouching)
+				{
+					objectVector *= this.CrouchMultiplier;
+
+					// Calculate how much farther the object needs to crouch in order to be fully crouched, and animate it.
+					var timeToLerp = (capsuleCollider.height / this._colliderHeight) * this.CrouchSpeed;
+					capsuleCollider.height = Mathf.Lerp(capsuleCollider.height, this.CrouchHeight * this._colliderHeight, timeToLerp);
+				}
+				else
+				{
+					var timeToLerp = ((this._colliderHeight - (this._colliderHeight * this.CrouchHeight)) / (this._colliderHeight - capsuleCollider.height)) * this.CrouchSpeed;
+					capsuleCollider.height = Mathf.Lerp(capsuleCollider.height, this._colliderHeight, timeToLerp);
+				}
+
+				this._crouchUpdated = false;
+			}
+
+#endregion
+
+			this.gameObject.transform.position += objectVector;
 
 			#endregion
 
@@ -181,9 +263,9 @@
 				// Add an upward force with the magnitude configured.
 				charComponent.AddForce(Vector3.up * this.JumpHeight, ForceMode.Impulse);
 				this._numJumps++;
-
-				this._isJumping = false;
 			}
+
+			this._isJumping = false;
 
 #endregion
 		}
@@ -193,6 +275,9 @@
 		/// </summary>
 		private void InitializeLocal()
 		{
+			// Track the height of the collider in order to have a "correct" point.
+			this._colliderHeight = this.GetComponent<CapsuleCollider>().height;
+
 			// This line exists to prevent an object from jumping as soon as the scene starts.
 			this._numJumps = this.AllowedJumps;
 		}
