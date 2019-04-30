@@ -31,7 +31,7 @@ public class CoreManager : Singleton<CoreManager>
 #if UNITY_EDITOR
 
         // Dependency Injection
-        MEFBootstrapper.RegisterPath(UnityEngine.Application.dataPath + "/../Library/ScriptAssemblies");
+        // MEFBootstrapper.RegisterPath(UnityEngine.Application.dataPath + "/../Library/ScriptAssemblies");
 
 #endif
 

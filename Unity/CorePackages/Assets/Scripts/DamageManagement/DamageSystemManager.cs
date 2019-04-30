@@ -1,0 +1,50 @@
+﻿using Assets.Scripts.Core;
+using Hans.DamageSystem;
+using Hans.DamageSystem.Models;
+
+namespace Assets.Scripts.DamageManagement
+{
+	/// <summary>
+	///  Singleton Manager for the Damage System, that allows damage to be tracked across entities/objects/anything that needs it,
+	/// 	in a single repeatable place.  This damage system will interact with whatever the Hans system is running as its backend.
+	/// </summary>
+	public class DamageSystemManager : Singleton<DamageSystemManager> 
+	{
+        /// <summary>
+        ///  The damage controller for the entire scene, that manages entity/damage relationships.
+        /// </summary>
+        private DamageController<DamageUnit> _damageController;
+
+        #region Unity Methods
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            // TODO: Make this a dynamic type, instead of just the base.
+            this._damageController = new DamageController<DamageUnit>();
+        }
+
+        protected void Start()
+        {
+            
+        }
+
+        #endregion
+
+        #region Manager Methods
+
+        /// <summary>
+        ///  Registers an entity with the damage manager, in order to track it's health throughout.
+        /// </summary>
+        /// <param name="entityId">The entity to register in the manager.</param>
+        /// <param name="startHealth">How much health the entity should start with.</param>
+        public void RegisterEntity(Entity entityRef)
+        {
+            this._damageController.DamageManager.BeginTrackingDamage(entityRef.Id, entityRef.StartHealth);
+            // this._damageController.OnEntityDeath += entityRef.OnEntityDeath;
+        }
+
+        #endregion
+    }
+}
