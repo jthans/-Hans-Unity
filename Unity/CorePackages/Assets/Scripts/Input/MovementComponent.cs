@@ -1,8 +1,8 @@
-﻿namespace Hans.Unity.Input
+﻿namespace Hans.Unity.PlayerControl
 {
     using Hans.Extensions;
     using Hans.Unity.Enums;
-	using UnityEngine;
+    using UnityEngine;
 
     /// <summary>
     ///  MovementComponent class, used to allow player input into the character's avatar to move/interact with the space/etc.

@@ -1,4 +1,4 @@
-﻿namespace Hans.Unity.Input
+﻿namespace Hans.Unity.PlayerControl
 {
     using System;
     using UnityEngine;
