@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hans.Logging.Unity", "Hans.Logging.Unity.csproj", "{B76C7A9B-BE39-4462-9356-0B738C76D42D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B76C7A9B-BE39-4462-9356-0B738C76D42D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B76C7A9B-BE39-4462-9356-0B738C76D42D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B76C7A9B-BE39-4462-9356-0B738C76D42D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B76C7A9B-BE39-4462-9356-0B738C76D42D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBE4140C-AAD4-4C92-A84C-2D04E6C05132}
+	EndGlobalSection
+EndGlobal
