@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{BFC9B2D2-13EB-A19C-C38E-1B3060DC3024}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -52,6 +53,9 @@
     <UnityVersion>2018.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hans.DamageSystem.Local, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.DamageSystem.Local.1.0.20190530.5-CI-20190530-033556\lib\net471\Hans.DamageSystem.Local.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -65,6 +69,7 @@
     <None Include="Assets\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpecTransp.shader" />
     <None Include="Assets\MoveMotionPack\SampleScene\Shaders\DiffuseReflectiveShader.shader" />
     <None Include="Assets\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpec.shader" />
+    <None Include="packages.config" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
@@ -278,9 +283,6 @@
     <Reference Include="Hans.DamageSystem">
       <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DamageSystem.dll</HintPath>
     </Reference>
-    <Reference Include="Hans.DamageSystem.Redis">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DamageSystem.Redis.dll</HintPath>
-    </Reference>
     <Reference Include="Hans.DependencyInjection">
       <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DependencyInjection.dll</HintPath>
     </Reference>
@@ -304,12 +306,6 @@
     </Reference>
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/taylo/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.13/UnityEngine.StandardEvents.dll</HintPath>
-    </Reference>
-    <Reference Include="Hans.Redis">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Redis.dll</HintPath>
-    </Reference>
-    <Reference Include="TeamDev.Redis">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/TeamDev.Redis.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>C:/Program Files/Unity/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>

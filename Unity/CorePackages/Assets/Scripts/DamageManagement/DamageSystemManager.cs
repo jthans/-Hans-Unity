@@ -35,6 +35,16 @@ namespace Assets.Scripts.DamageManagement
         #region Manager Methods
 
         /// <summary>
+        ///  Applies damage to an entity based on the damage unit created.
+        /// </summary>
+        /// <param name="targetEntity">Which entity should take this damage.</param>
+        /// <param name="damageAmt">The amount of damage to apply.</param>
+        public void ApplyDamage(Entity targetEntity, DamageUnit damageAmt)
+        {
+            this._damageController.ApplyDamage(targetEntity.Id, damageAmt);
+        }
+
+        /// <summary>
         ///  Registers an entity with the damage manager, in order to track it's health throughout.
         /// </summary>
         /// <param name="entityId">The entity to register in the manager.</param>
@@ -42,7 +52,7 @@ namespace Assets.Scripts.DamageManagement
         public void RegisterEntity(Entity entityRef)
         {
             this._damageController.DamageManager.BeginTrackingDamage(entityRef.Id, entityRef.StartHealth);
-            // this._damageController.OnEntityDeath += entityRef.OnEntityDeath;
+            this._damageController.OnEntityDeath += entityRef.OnEntityDeath;
         }
 
         #endregion

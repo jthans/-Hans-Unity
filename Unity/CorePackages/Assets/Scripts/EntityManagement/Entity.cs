@@ -13,6 +13,11 @@ public class Entity : MonoBehaviour
     #region Fields
 
     /// <summary>
+    ///  Indicates whether or not this entity is damageable or not.
+    /// </summary>
+    public bool Damageable = true;
+
+    /// <summary>
     ///  How much health this entity will start with.
     /// </summary>
     public decimal StartHealth = 100;
@@ -48,7 +53,7 @@ public class Entity : MonoBehaviour
     void Start()
     {
         // Register the entity for damage tracking, if it hasn't been already.
-        // DamageSystemManager.Instance.RegisterEntity(this);
+        DamageSystemManager.Instance.RegisterEntity(this);
         
     }
 
@@ -60,7 +65,7 @@ public class Entity : MonoBehaviour
     ///  Placeholder for what happens when an entity dies.
     /// </summary>
     /// <param name="deathArgs"></param>
-    public void OnEntityDeath(object sender, EntityDeathEventArgs deathArgs)
+    public void OnEntityDeath(object sender, System.EventArgs deathArgs)
     {
         
     }
