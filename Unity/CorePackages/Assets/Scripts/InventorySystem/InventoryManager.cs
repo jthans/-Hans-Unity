@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Core;
 using Assets.Scripts.InventorySystem.Item_Management;
 using Hans.Inventory.Core;
+using Hans.Inventory.Core.Interfaces;
 using Hans.Logging;
 using Hans.Logging.Interfaces;
 
@@ -66,17 +67,50 @@ namespace Assets.Scripts.InventorySystem
         /// <param name="entityId">The entity to which we'll add the item.</param>
         /// <param name="itemId">The item's ID, should reference the class passed here.</param>
         /// <param name="quantity">How many of this item to add.</param>
-        public void AddItemToInventory(string entityId, string itemId, int quantity = 1)
+        public void AddItemToInventory(string entityId, string itemId, int quantity = 1, bool isPickup = false)
         {
-            var foundItem = this.InventoryLookup[itemId];
+            var foundItem = this.GetInventoryItemById(itemId);
             if (foundItem == null)
             {
                 this._log.LogMessage($"Item { itemId } couldn't be added to entity { entityId }, due to it not existing in the item database.");
                 return;
             }
 
+            // Trigger any extra logic when pickup occurs.
+            if (isPickup)
+                (foundItem as InventoryItem).OnPickup(entityId);
+
             this._inventorySystem.AddItem(foundItem, quantity);
-            UnityEngine.Debug.Log(this._inventorySystem.GetItemProfile(foundItem).TotalQuantity);
+            this._log.LogMessage($"Item ID { itemId }, New Qty: { this._inventorySystem.GetItemProfile(foundItem).TotalQuantity }");
+        }
+
+        /// <summary>
+        ///  Indicates whether or not an item is being held by an entity.
+        /// </summary>
+        /// <param name="entityId">The entity that we're checking.</param>
+        /// <param name="itemId">The ID of the item we're checking.</param>
+        /// <returns>If the entity has the item in it's inventory.</returns>
+        public bool IsEntityHoldingItem(string entityId, string itemId)
+        {
+            var foundItem = this.GetInventoryItemById(itemId);
+            var itemSearch = this._inventorySystem.GetItemProfile(foundItem);
+
+            // TODO: Inventory should support multiple entities.
+            return itemSearch.TotalQuantity > 0;
+        }
+
+        #endregion
+
+        #region Internal Methods
+
+        /// <summary>
+        ///  Gets an inventory item stored in the lookup tables via the ID.
+        /// </summary>
+        /// <param name="itemId">The ID of the item to retrieve.</param>
+        /// <returns>The item, if one is found.  Null if not.</returns>
+        private IIInventoryItem GetInventoryItemById(string itemId)
+        {
+            return this.InventoryLookup[itemId];
         }
 
         #endregion

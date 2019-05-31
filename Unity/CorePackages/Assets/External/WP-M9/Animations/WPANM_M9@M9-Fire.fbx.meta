@@ -1,0 +1,154 @@
+fileFormatVersion: 2
+guid: 4bb6df0f446d209408e8f7b7c2be90e4
+timeCreated: 1449704127
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: m9_accessory_joint
+    100002: m9_barrel
+    100004: m9_bullet_joint
+    100006: m9_hammer_joint
+    100008: m9_magazine_joint
+    100010: m9_muzzle_joint
+    100012: m9_root_joint
+    100014: m9_safety_joint
+    100016: m9_shell_joint
+    100018: m9_slide_joint
+    100020: m9_slidelock_joint
+    100022: m9_trigger_joint
+    100024: //RootNode
+    400000: m9_accessory_joint
+    400002: m9_barrel
+    400004: m9_bullet_joint
+    400006: m9_hammer_joint
+    400008: m9_magazine_joint
+    400010: m9_muzzle_joint
+    400012: m9_root_joint
+    400014: m9_safety_joint
+    400016: m9_shell_joint
+    400018: m9_slide_joint
+    400020: m9_slidelock_joint
+    400022: m9_trigger_joint
+    400024: //RootNode
+    4300000: m9_barrel
+    7400000: M9-Fire
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: m9_barrel
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 0
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: M9-Fire
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 33
+      wrapMode: 2
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: m9_barrel
+        weight: 1
+      - path: m9_root_joint
+        weight: 1
+      - path: m9_root_joint/m9_accessory_joint
+        weight: 1
+      - path: m9_root_joint/m9_bullet_joint
+        weight: 1
+      - path: m9_root_joint/m9_hammer_joint
+        weight: 1
+      - path: m9_root_joint/m9_magazine_joint
+        weight: 1
+      - path: m9_root_joint/m9_muzzle_joint
+        weight: 1
+      - path: m9_root_joint/m9_shell_joint
+        weight: 1
+      - path: m9_root_joint/m9_slide_joint
+        weight: 1
+      - path: m9_root_joint/m9_slide_joint/m9_safety_joint
+        weight: 1
+      - path: m9_root_joint/m9_slidelock_joint
+        weight: 1
+      - path: m9_root_joint/m9_trigger_joint
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

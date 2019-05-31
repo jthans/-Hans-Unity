@@ -61,7 +61,7 @@ namespace Hans.Unity.Core.Raycasting
             Destroy(this.focusedGameObject);
 
             // Add the item to the player's inventory.
-            InventoryManager.Instance.AddItemToInventory(null, itemId);
+            InventoryManager.Instance.AddItemToInventory(null, itemId, isPickup: true);
         }
 
         #endregion

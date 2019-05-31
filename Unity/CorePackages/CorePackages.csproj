@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{E8A5741C-725B-7A88-789C-19F6D29CC43F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -60,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Constants\AmmoLocation.cs" />
     <Compile Include="Assets\Scripts\Constants\ButtonNames.cs" />
     <Compile Include="Assets\Scripts\Constants\Tags.cs" />
     <Compile Include="Assets\Scripts\Core\CoreManager.cs" />
@@ -78,6 +80,9 @@
     <Compile Include="Assets\Scripts\Input\MouseLookComponent.cs" />
     <Compile Include="Assets\Scripts\Input\MovementComponent.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\InventoryManager.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\Item Management\Weapons\Firearms\AmmoType.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\Item Management\Weapons\Firearms\InventoryFirearm.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\Item Management\Weapons\InventoryWeapon.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\InventoryLookupTable.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\ObtainableItem.cs" />
@@ -703,6 +708,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a3/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

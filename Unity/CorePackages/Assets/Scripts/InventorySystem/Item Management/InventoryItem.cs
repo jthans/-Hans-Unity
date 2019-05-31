@@ -14,6 +14,11 @@ namespace Assets.Scripts.InventorySystem
         public Guid Id { get; set; }
 
         /// <summary>
+        ///  ID in plaintext.
+        /// </summary>
+        public string TextId { get; set; }
+
+        /// <summary>
         ///  Initializes a new instance of the inventory item, by generating a GUID to identify this GUID by.  Later, this ID needs to be
         ///     changed to a string, or find a better way to generate the GUID.
         /// </summary>
@@ -24,6 +29,15 @@ namespace Assets.Scripts.InventorySystem
             BitConverter.GetBytes(itemId.GetHashCode()).CopyTo(bytes, 0);
 
             this.Id = new Guid(bytes);
+            this.TextId = itemId;
+        }
+
+        /// <summary>
+        ///  Method called when an item is picked up <b>in addition to adding it to the inventory,</b> running based on who picked it up.
+        /// </summary>
+        public virtual void OnPickup(string entityId)
+        {
+            // BY DEFAULT, DO NOTHING.
         }
     }
 }

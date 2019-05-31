@@ -1,0 +1,209 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!54 &737009533
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727487805384528750}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &737009535
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727487805384528750}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.08, y: 0.2, z: 0.3}
+  m_Center: {x: 0, y: 0.02, z: 0.08}
+--- !u!114 &737009532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727487805384528750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 786449413b659b945ad716a1c77065f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Collider: {fileID: 737009535}
+  Model: {fileID: 0}
+--- !u!114 &737009534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727487805384528750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eac0792ed15d3d4e999c47cd15fbc29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: Weapon_Pistol_M9
+--- !u!65 &1096461637
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727487805384341348}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.075, y: 0.18, z: 0.25}
+  m_Center: {x: 0, y: 0.02, z: 0.08}
+--- !u!65 &1151976994
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727487805384348046}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.075, y: 0.18, z: 0.25}
+  m_Center: {x: 0, y: 0.02, z: 0.08}
+--- !u!65 &1355304315
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727487805384351742}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.075, y: 0.18, z: 0.25}
+  m_Center: {x: 0, y: 0.02, z: 0.08}
+--- !u!65 &1919322071
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4727487805384320938}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.075, y: 0.18, z: 0.25}
+  m_Center: {x: 0, y: 0.02, z: 0.08}
+--- !u!1001 &4727487805384457264
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 126814, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_Name
+      value: Weapon_Pistol_M9
+      objectReference: {fileID: 0}
+    - target: {fileID: 126814, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_TagString
+      value: Item
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.9001292
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.417
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.9346495
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20586786, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_FadeMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20586786, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+--- !u!1 &4727487805384528750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 126814, guid: bf874612e111afb448401ac93ffca82e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4727487805384457264}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4727487805384341348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 183124, guid: bf874612e111afb448401ac93ffca82e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4727487805384457264}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4727487805384348046 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 175550, guid: bf874612e111afb448401ac93ffca82e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4727487805384457264}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4727487805384351742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 173006, guid: bf874612e111afb448401ac93ffca82e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4727487805384457264}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4727487805384320938 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 138138, guid: bf874612e111afb448401ac93ffca82e,
+    type: 3}
+  m_PrefabInstance: {fileID: 4727487805384457264}
+  m_PrefabAsset: {fileID: 0}
