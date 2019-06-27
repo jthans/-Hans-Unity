@@ -117,11 +117,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 126814, guid: bf874612e111afb448401ac93ffca82e, type: 3}
       propertyPath: m_Name
-      value: Weapon_Pistol_M9
+      value: Weapon_Pistol_M9 Variant
       objectReference: {fileID: 0}
     - target: {fileID: 126814, guid: bf874612e111afb448401ac93ffca82e, type: 3}
       propertyPath: m_TagString
-      value: Item
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 20586786, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_FadeMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 20586786, guid: bf874612e111afb448401ac93ffca82e, type: 3}
+      propertyPath: m_AnimateCrossFading
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -166,14 +174,6 @@ PrefabInstance:
     - target: {fileID: 437138, guid: bf874612e111afb448401ac93ffca82e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20586786, guid: bf874612e111afb448401ac93ffca82e, type: 3}
-      propertyPath: m_FadeMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 20586786, guid: bf874612e111afb448401ac93ffca82e, type: 3}
-      propertyPath: m_AnimateCrossFading
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf874612e111afb448401ac93ffca82e, type: 3}

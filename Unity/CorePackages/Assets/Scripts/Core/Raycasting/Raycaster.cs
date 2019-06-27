@@ -68,21 +68,32 @@ namespace Assets.Scripts.Core.Raycasting
 
             // Perform the raycast, and react to it.
             int detectedGO = -1;
+            bool firstHit = false;
             float rayDistance = this.RaycastLength;
             RaycastHit rayHit;
             if (Physics.Raycast(this.transform.position, this.transform.TransformDirection(Vector3.forward), out rayHit, this.RaycastLength, layerMask))
             {
                 detectedGO = rayHit.collider.gameObject.GetInstanceID();
-                this.ProcessRaycastHit(rayHit, this.lastGameObjectDetected != detectedGO);
+                firstHit = this.lastGameObjectDetected != detectedGO;
+
+                // See if we've changed gameObjects - if we have, we have some events to throw.
+                if (firstHit)
+                {
+                    this.UpdateDetectedObject(detectedGO);
+                }
+
+                this.ProcessRaycastHit(rayHit, firstHit);
 
                 // Update the debugger line's distance.
                 rayDistance = rayHit.distance;
             }
-
-            // See if we've changed gameObjects - if we have, we have some events to throw.
-            if (this.lastGameObjectDetected != detectedGO)
+            else
             {
-                this.UpdateDetectedObject(detectedGO);
+                // See if we've changed gameObjects - if we have, we have some events to throw.
+                if (this.lastGameObjectDetected != detectedGO)
+                {
+                    this.UpdateDetectedObject(detectedGO);
+                }
             }
 
 #if UNITY_EDITOR
@@ -90,8 +101,10 @@ namespace Assets.Scripts.Core.Raycasting
             if (this.DebuggerLineEnabled)
             {
                 Debug.DrawRay(this.transform.position, this.transform.TransformDirection(Vector3.forward) * rayDistance, Color.red);
-#endif
             }
+
+            // GameObject.Find("DEBUG_FOCUSED_OBJ").GetComponent<Text>().text = rayHit.collider?.gameObject?.name;
+#endif
         }
 
         void Start()
@@ -127,7 +140,6 @@ namespace Assets.Scripts.Core.Raycasting
             {
                 // Get the generic payload.
                 var enterPayload = this.BuildPayload(rayHit);
-
                 if (isFirstHit)
                 {
                     // Handle Tag Searches First, as these will be more common.
@@ -150,7 +162,7 @@ namespace Assets.Scripts.Core.Raycasting
             }
             catch (Exception ex)
             {
-                this.log.LogMessage($"Exception Processing Raycast: { ex.ToString() };");
+                this.log.LogMessage($"Exception Processing Raycast: { ex.ToString() }");
             }
         }
 
@@ -161,7 +173,7 @@ namespace Assets.Scripts.Core.Raycasting
         private void UpdateDetectedObject(int detectedGO)
         {
             // We're leaving an object - Throw an event if so.
-            if (this.lastGameObjectDetected >= 0 &&
+            if (this.lastGameObjectDetected != -1 &&
                 this.OnRaycastEnded != null) // Only throw if we have subscribers to this event.
             {
                 this.OnRaycastEnded();

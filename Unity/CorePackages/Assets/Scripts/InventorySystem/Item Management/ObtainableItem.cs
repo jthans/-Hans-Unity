@@ -9,7 +9,6 @@ namespace Assets.Scripts.InventorySystem
     /// </summary>
     [RequireComponent(typeof(Collider))]
     [RequireComponent(typeof(IDComponent))]
-    [RequireComponent(typeof(Rigidbody))]
     public class ObtainableItem : MonoBehaviour
     {
         #region Fields
