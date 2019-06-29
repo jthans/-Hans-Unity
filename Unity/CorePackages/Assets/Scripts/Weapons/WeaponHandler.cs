@@ -39,6 +39,11 @@ public class WeaponHandler : MonoBehaviour
     /// </summary>
     public Animation CharacterAnimator;
 
+    /// <summary>
+    ///  Where to anchor the weapon once spawned.
+    /// </summary>
+    public GameObject WeaponAnchor;
+
     #endregion
 
     #region Unity Methods
@@ -82,13 +87,24 @@ public class WeaponHandler : MonoBehaviour
             return;
         }
 
+        // If they're already holding a weapon, get rid of it.
+        if (this._equippedWeapon != null)
+        {
+            Destroy(this._equippedWeapon.gameObject);
+        }
+
+        // TODO: Rotation Needs to be Dynamic.
+        var spawnedWeapon = Instantiate(weaponToEquip.gameObject, this.WeaponAnchor.transform);
+        spawnedWeapon.transform.localRotation = Quaternion.Euler(180, 90, 90);
         this._equippedWeapon = weaponToEquip;
         this._isFirearm = weaponToEquip.GetType() == typeof(Firearm);
 
         #region Animations
 
+        // Build the list of animations, and start the character in Idle stance.
         IList<AnimationClip> animationClips = new List<AnimationClip>();
         this.CharacterAnimator.AddClip(this._equippedWeapon.Anim_Idle, "Idle");
+        this.CharacterAnimator.Play("Idle", PlayMode.StopAll);
 
         if (this._isFirearm)
         {
