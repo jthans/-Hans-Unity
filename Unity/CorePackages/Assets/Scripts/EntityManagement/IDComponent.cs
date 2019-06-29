@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Enums;
+using UnityEngine;
 
 namespace Assets.Scripts.EntityManagement
 {
@@ -13,5 +14,10 @@ namespace Assets.Scripts.EntityManagement
         ///  The actual ID property, containing the identifier.
         /// </summary>
         public string ID;
+
+        /// <summary>
+        ///  THe type of this item, that tells us what to do with items when they're interacted with.
+        /// </summary>
+        public ItemType Type;
     }
 }

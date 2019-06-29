@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\EntityManagement\Entity.cs" />
     <Compile Include="Assets\Scripts\EntityManagement\IDComponent.cs" />
     <Compile Include="Assets\Scripts\Enums\Direction.cs" />
+    <Compile Include="Assets\Scripts\Enums\ItemType.cs" />
     <Compile Include="Assets\Scripts\Enums\RaycastSubscriptionType.cs" />
     <Compile Include="Assets\Scripts\Input\MouseLookComponent.cs" />
     <Compile Include="Assets\Scripts\Input\MovementComponent.cs" />

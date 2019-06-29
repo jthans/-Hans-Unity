@@ -67,13 +67,13 @@ namespace Assets.Scripts.InventorySystem
         /// <param name="entityId">The entity to which we'll add the item.</param>
         /// <param name="itemId">The item's ID, should reference the class passed here.</param>
         /// <param name="quantity">How many of this item to add.</param>
-        public void AddItemToInventory(string entityId, string itemId, int quantity = 1, bool isPickup = false)
+        public bool AddItemToInventory(string entityId, string itemId, int quantity = 1, bool isPickup = false)
         {
             var foundItem = this.GetInventoryItemById(itemId);
             if (foundItem == null)
             {
                 this._log.LogMessage($"Item { itemId } couldn't be added to entity { entityId }, due to it not existing in the item database.");
-                return;
+                return false;
             }
 
             // Trigger any extra logic when pickup occurs.
@@ -82,6 +82,24 @@ namespace Assets.Scripts.InventorySystem
 
             this._inventorySystem.AddItem(foundItem, quantity);
             this._log.LogMessage($"Item ID { itemId }, New Qty: { this._inventorySystem.GetItemProfile(foundItem).TotalQuantity }");
+
+            return true;
+        }
+
+        /// <summary>
+        ///  Adds a weapon to the inventory, by managing what stays equipped, where it goes, etc.
+        /// </summary>
+        /// <param name="entityId">The entity picking up the given weapon.</param>
+        /// <param name="itemId">The weapon ID that we'll be adding.</param>
+        /// <param name="isEquip">If this is an equip action, meaning the actor equips it immediately.</param>
+        public void AddWeaponToInventory(string entityId, string itemId, bool isEquip)
+        {
+            // Attempt to add the weapon to the entity's inventory.
+            if (AddItemToInventory(entityId, itemId, isPickup: true) &&
+                isEquip)
+            {
+
+            }
         }
 
         /// <summary>
