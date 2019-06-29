@@ -4,13 +4,24 @@
 public class ButtonNames
 {
     /// <summary>
+    ///  Aim - Aim
+    /// </summary>
+    public const string Aim = "Aim";
+
+    /// <summary>
     ///  Backward - Backward
     /// </summary>
     public const string Backward = "Backward";
+
     /// <summary>
     ///  Crouch - Crouch/Slide
     /// </summary>
     public const string Crouch = "Crouch";
+
+    /// <summary>
+    ///  Fire - Fire
+    /// </summary>
+    public const string Fire = "Fire";
 
     /// <summary>
     ///  Forward - Forward
@@ -41,6 +52,11 @@ public class ButtonNames
     ///  MouseY - Mouse Y
     /// </summary>
     public const string MouseY = "Mouse Y";
+
+    /// <summary>
+    ///  Reload - Reload
+    /// </summary>
+    public const string Reload = "Reload";
 
     /// <summary>
     ///  Right - Right

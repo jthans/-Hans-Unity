@@ -1,9 +1,11 @@
 ﻿using Assets.Scripts.Core;
 using Assets.Scripts.InventorySystem.Item_Management;
+using Assets.Scripts.InventorySystem.Item_Management.Weapons;
 using Hans.Inventory.Core;
 using Hans.Inventory.Core.Interfaces;
 using Hans.Logging;
 using Hans.Logging.Interfaces;
+using System.Linq;
 
 namespace Assets.Scripts.InventorySystem
 {
@@ -19,6 +21,11 @@ namespace Assets.Scripts.InventorySystem
         ///  The lookup table associated with THIS manager that will allow us to access item information.
         /// </summary>
         public InventoryLookupTable InventoryLookup;
+
+        /// <summary>
+        ///  Packs of weapons to be loaded into the inventory management system.
+        /// </summary>
+        public WeaponPack[] WeaponPacks;
 
         #endregion
 
@@ -38,9 +45,13 @@ namespace Assets.Scripts.InventorySystem
 
         #region Unity Methods
 
+        /// <summary>
+        ///  Initialization
+        /// </summary>
         void Start()
         {
             this._log = LoggerManager.CreateLogger(typeof(InventoryManager));
+            Armory.LoadWeapons(this.WeaponPacks.SelectMany(x => x.Weapons).ToArray());
         }
 
         #endregion
@@ -98,7 +109,13 @@ namespace Assets.Scripts.InventorySystem
             if (AddItemToInventory(entityId, itemId, isPickup: true) &&
                 isEquip)
             {
-
+                var weaponComp = EntityManager.Instance.FindEntityWithId(entityId)?.GetComponent<WeaponHandler>();
+                if (weaponComp != null &&
+                    Armory.Weapons.ContainsKey(itemId))
+                {
+                    this._log.LogMessage($"Equipping { itemId }.");
+                    weaponComp.EquipWeapon(Armory.Weapons[itemId]);
+                }
             }
         }
 

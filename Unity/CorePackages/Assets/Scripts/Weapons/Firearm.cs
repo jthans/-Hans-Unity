@@ -7,15 +7,23 @@ using UnityEngine;
 /// </summary>
 public class Firearm : Weapon
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    /// <summary>
+    ///  FOV used when a player is aiming.
+    /// </summary>
+    public float ADS_FOV = 30;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    /// <summary>
+    ///  ADS Animation (Aiming)
+    /// </summary>
+    public AnimationClip Anim_ADS;
+
+    /// <summary>
+    ///  Reload Animation
+    /// </summary>
+    public AnimationClip Anim_Reload;
+
+    /// <summary>
+    ///  Clip Size of the Weapon
+    /// </summary>
+    public int ClipSize;
 }

@@ -40,7 +40,7 @@ namespace Assets.Scripts.Core.Raycasting
         /// <summary>
         ///  The last calling raycaster, so we can unsubscribe from the exit event once it's complete.
         /// </summary>
-        private Raycaster lastCallingRaycaster;
+        protected Raycaster lastCallingRaycaster;
 
         /// <summary>
         ///  Logger class used to export information about this subscriber to the Unity Engine.

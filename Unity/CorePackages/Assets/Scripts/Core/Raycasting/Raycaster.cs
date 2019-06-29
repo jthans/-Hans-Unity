@@ -31,6 +31,9 @@ namespace Assets.Scripts.Core.Raycasting
         [Tooltip("Whether or not to show a debugging line to represent the raycast in 3D space.")]
         public bool DebuggerLineEnabled = true;
 
+        [Tooltip("The entity consuming these raycast events.")]
+        public Entity Entity;
+
         [Tooltip("How far to send the raycast, how far the vision should be for detecting things, basically.")]
         public float RaycastLength = 5;
 

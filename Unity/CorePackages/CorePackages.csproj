@@ -81,12 +81,14 @@
     <Compile Include="Assets\Scripts\Input\MouseLookComponent.cs" />
     <Compile Include="Assets\Scripts\Input\MovementComponent.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\InventoryManager.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\Item Management\Weapons\Armory.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\Weapons\Firearms\AmmoType.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\Weapons\Firearms\InventoryFirearm.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\Weapons\InventoryWeapon.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\InventoryItem.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\InventoryLookupTable.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\ObtainableItem.cs" />
+    <Compile Include="Assets\Scripts\InventorySystem\Item Management\Weapons\WeaponPack.cs" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a3/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>

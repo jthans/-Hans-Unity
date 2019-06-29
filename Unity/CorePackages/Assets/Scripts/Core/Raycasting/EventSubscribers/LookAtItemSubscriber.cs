@@ -55,13 +55,20 @@ namespace Hans.Unity.Core.Raycasting
         /// </summary>
         private void AddToPlayerInventory()
         {
-            var itemId = this.focusedGameObject.GetComponent<IDComponent>().ID;
+            var itemID = this.focusedGameObject.GetComponent<IDComponent>();
 
             // Get rid of the object, it's been "picked up".
             Destroy(this.focusedGameObject);
 
             // Add the item to the player's inventory.
-            InventoryManager.Instance.AddItemToInventory(null, itemId, isPickup: true);
+            if (itemID.Type == Assets.Scripts.Enums.ItemType.Weapon)
+            {
+                InventoryManager.Instance.AddWeaponToInventory(this.lastCallingRaycaster.Entity?.Id, itemID.ID, true);
+            }
+            else
+            {
+                InventoryManager.Instance.AddItemToInventory(this.lastCallingRaycaster.Entity?.Id, itemID.ID, isPickup: true);
+            }
         }
 
         #endregion
