@@ -7,6 +7,8 @@ using UnityEngine;
 /// </summary>
 public class Firearm : Weapon
 {
+    #region Properties
+
     /// <summary>
     ///  FOV used when a player is aiming.
     /// </summary>
@@ -26,4 +28,24 @@ public class Firearm : Weapon
     ///  Clip Size of the Weapon
     /// </summary>
     public int ClipSize;
+
+    /// <summary>
+    ///  If this weapon is fully auto (can hold down trigger to fire.)
+    /// </summary>
+    public bool IsAuto;
+
+    #endregion
+
+    #region Instance Methods
+
+    /// <summary>
+    ///  Firearm's attack method, will use raycasting/distance settings to determine a successful hit.
+    /// </summary>
+    /// <returns></returns>
+    public override bool Attack()
+    {
+        return base.Attack();
+    }
+
+    #endregion
 }

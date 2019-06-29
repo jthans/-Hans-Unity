@@ -21,6 +21,11 @@ public class WeaponHandler : MonoBehaviour
     private bool _isAiming;
 
     /// <summary>
+    ///  Whether the character is actively firing or not.
+    /// </summary>
+    private bool _isFiring;
+
+    /// <summary>
     ///  Indicates whether or not the stored weapon is a firearm. (Handled differently.)
     /// </summary>
     private bool _isFirearm;
@@ -69,6 +74,19 @@ public class WeaponHandler : MonoBehaviour
 
             // Track whether or not the weapon is being aimed.
             this.SetAiming(Input.GetButton(ButtonNames.Aim));
+
+            // Set the firing mechanism, and trigger the co-routine if necessary.
+            if (!this._isFiring)
+            {
+                this._isFiring = (this._isFirearm && (this._equippedWeapon as Firearm).IsAuto && Input.GetButton(ButtonNames.Fire)) ||
+                                    Input.GetButtonDown(ButtonNames.Fire);
+
+                // If this is a fire action, we should trigger the fire coroutine.
+                if (this._isFiring)
+                {
+                    StartCoroutine("FireAction");
+                }
+            }
         }
     }
 
@@ -96,6 +114,7 @@ public class WeaponHandler : MonoBehaviour
         // TODO: Rotation Needs to be Dynamic.
         var spawnedWeapon = Instantiate(weaponToEquip.gameObject, this.WeaponAnchor.transform);
         spawnedWeapon.transform.localRotation = Quaternion.Euler(180, 90, 90);
+
         this._equippedWeapon = weaponToEquip;
         this._isFirearm = weaponToEquip.GetType() == typeof(Firearm);
 
@@ -120,6 +139,33 @@ public class WeaponHandler : MonoBehaviour
     #region Internal Methods
 
     /// <summary>
+    ///  Couroutine that handles the firing mechanisms of the given weapon. Assumes firing is true, for at least the first run.
+    /// </summary>
+    /// <returns>Runs until firing action is complete.</returns>
+    private IEnumerator FireAction()
+    {
+        while (this._isFiring)
+        {
+            this._equippedWeapon.Attack();
+
+            if (!this._isFirearm ||
+                !(this._equippedWeapon as Firearm).IsAuto)
+            {
+                this._isFiring = false;
+            }
+            else
+            {
+                this._isFiring = Input.GetButton(ButtonNames.Fire);
+            }
+
+            yield return new WaitForSeconds(this._equippedWeapon.AttackRate);
+        }
+
+        // When the firing action completes, return out from the co-routine.
+        yield return null;
+    }
+
+    /// <summary>
     ///  Sets whether or not the character is aiming or not.
     /// </summary>
     /// <param name="isAiming">If they're currently aiming.</param>
@@ -130,7 +176,6 @@ public class WeaponHandler : MonoBehaviour
             this._isAiming = isAiming;
             if (this._isAiming)
             {
-                this.log.LogMessage($"ADS");
                 this.CharacterAnimator.Play("ADS", PlayMode.StopAll);
             }
             else

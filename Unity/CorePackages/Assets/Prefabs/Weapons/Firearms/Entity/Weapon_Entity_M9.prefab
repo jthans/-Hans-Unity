@@ -1075,11 +1075,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Anim_Idle: {fileID: 7400000, guid: 0defd751c9bbca24d85544ee2a591631, type: 3}
+  AttackRate: 1
   Name: Weapon_Pistol_M9
   ADS_FOV: 30
   Anim_ADS: {fileID: 7400000, guid: 130ece790fea33545b431199e529f2d6, type: 3}
   Anim_Reload: {fileID: 7400000, guid: 820015aacd31a0c4fb595f0c9d3845a6, type: 3}
   ClipSize: 12
+  IsAuto: 0
 --- !u!1 &1659048414887000608
 GameObject:
   m_ObjectHideFlags: 0
