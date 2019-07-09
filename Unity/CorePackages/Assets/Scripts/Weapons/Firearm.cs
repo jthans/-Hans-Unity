@@ -67,8 +67,10 @@ public class Firearm : Weapon
     /// <summary>
     ///  Firearm's attack method, will use raycasting/distance settings to determine a successful hit.
     /// </summary>
+    /// <param name="isADS">If the weapon is being aimed or not.</param>
+    /// <param name="animObj">The object to animate with the fire action, if any.</param>
     /// <returns>If the attack impacted anything.</returns>
-    public override bool Attack(bool isADS = false)
+    public override bool Attack(bool isADS = false, Animation animObj = null)
     {
         // Set up the initial point, and the direction in which we're shooting.
         Vector3 pointOfShot = this.MuzzleObj.transform.position;
@@ -95,6 +97,30 @@ public class Firearm : Weapon
         #endif
 
         return base.Attack(isADS);
+    }
+
+    /// <summary>
+    ///  Aims with the given weapon, by playing the appropriate animations and focusing the weapon.
+    /// </summary>
+    /// <param name="isADS">If the weapon is currently being aimed.</param>
+    /// <param name="animObj">The object to animate with the weapon, if one exists.</param>
+    public override void Focus(bool isADS = false, Animation animObj = null)
+    {
+        if (isADS)
+        {
+            animObj?.Play("ADS", PlayMode.StopAll);
+            return;
+        }
+        
+        animObj?.Play("Idle", PlayMode.StopAll);
+    }
+
+    public override void Initialize(Animation animObj = null, GameObject weaponPov = null)
+    {
+        base.Initialize(animObj);
+        
+        animObj?.AddClip(this.Anim_ADS, "ADS");
+        this.MuzzleObj = weaponPov;
     }
 
 #endregion

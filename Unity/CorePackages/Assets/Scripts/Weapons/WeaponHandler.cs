@@ -124,23 +124,8 @@ public class WeaponHandler : MonoBehaviour
         this._equippedWeapon = weaponToEquip;
         this._isFirearm = weaponToEquip.GetType() == typeof(Firearm);
 
-        #region Animations
-
-        // Build the list of animations, and start the character in Idle stance.
-        IList<AnimationClip> animationClips = new List<AnimationClip>();
-        this.CharacterAnimator.AddClip(this._equippedWeapon.Anim_Idle, "Idle");
-        this.CharacterAnimator.Play("Idle", PlayMode.StopAll);
-
-        // Firearm Calculations.
-        if (this._isFirearm)
-        {
-            var firearmWeapon = this._equippedWeapon as Firearm;
-            this.CharacterAnimator.AddClip(firearmWeapon.Anim_ADS, "ADS");
-
-            firearmWeapon.MuzzleObj = this.EntityPOV;
-        }
-
-        #endregion
+        // Initialize the weapon state.
+        this._equippedWeapon.Initialize(this.CharacterAnimator, this._isFirearm ? this.EntityPOV : null);
     }
 
     #endregion
@@ -183,14 +168,7 @@ public class WeaponHandler : MonoBehaviour
         if (this._isAiming != isAiming)
         {
             this._isAiming = isAiming;
-            if (this._isAiming)
-            {
-                this.CharacterAnimator.Play("ADS", PlayMode.StopAll);
-            }
-            else
-            {
-                this.CharacterAnimator.Play("Idle", PlayMode.StopAll);
-            }
+            this._equippedWeapon.Focus(this._isAiming, this.CharacterAnimator);
         }
     }
 

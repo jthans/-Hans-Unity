@@ -60,11 +60,29 @@ public class Weapon : MonoBehaviour
     /// <summary>
     ///  Base Attack Action, in case some types have specialized versions.
     /// </summary>
+    /// <param name="isADS">If the weapon is being aimed or not.</param>
+    /// <param name="animObj">The object to animate with the fire action, if any.</param>
     /// <returns>If the attack made impact.</returns>
-    public virtual bool Attack(bool isADS = false)
+    public virtual bool Attack(bool isADS = false, Animation animObj = null)
     {
         this._log?.LogMessage($"Attack w/ Weapon { this.Name }.");
         return true;
+    }
+
+    /// <summary>
+    ///  What to do when the weapon is aimed ADS, or not.  Handles animations/interactions per weapon type.
+    /// </summary>
+    /// <param name="isADS">If the weapon is currently being focused.</param>
+    /// <param name="animObj">The object to animate with the fire action, if any.</param>
+    public virtual void Focus(bool isADS = false, Animation animObj = null)
+    {
+        return;
+    }
+
+    public virtual void Initialize(Animation animObj = null, GameObject weaponPov = null)
+    {
+        animObj?.AddClip(this.Anim_Idle, "Idle");
+        animObj?.Play("Idle", PlayMode.StopAll);
     }
 
     #endregion
