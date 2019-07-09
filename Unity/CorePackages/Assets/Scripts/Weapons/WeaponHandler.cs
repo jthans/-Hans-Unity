@@ -45,6 +45,11 @@ public class WeaponHandler : MonoBehaviour
     public Animation CharacterAnimator;
 
     /// <summary>
+    ///  The POV of the entity holding this weapon, for aiming calculations.
+    /// </summary>
+    public GameObject EntityPOV;
+
+    /// <summary>
     ///  Where to anchor the weapon once spawned.
     /// </summary>
     public GameObject WeaponAnchor;
@@ -115,6 +120,7 @@ public class WeaponHandler : MonoBehaviour
         var spawnedWeapon = Instantiate(weaponToEquip.gameObject, this.WeaponAnchor.transform);
         spawnedWeapon.transform.localRotation = Quaternion.Euler(180, 90, 90);
 
+        // Equip the weapon, and assign the POV.
         this._equippedWeapon = weaponToEquip;
         this._isFirearm = weaponToEquip.GetType() == typeof(Firearm);
 
@@ -125,10 +131,13 @@ public class WeaponHandler : MonoBehaviour
         this.CharacterAnimator.AddClip(this._equippedWeapon.Anim_Idle, "Idle");
         this.CharacterAnimator.Play("Idle", PlayMode.StopAll);
 
+        // Firearm Calculations.
         if (this._isFirearm)
         {
             var firearmWeapon = this._equippedWeapon as Firearm;
             this.CharacterAnimator.AddClip(firearmWeapon.Anim_ADS, "ADS");
+
+            firearmWeapon.MuzzleObj = this.EntityPOV;
         }
 
         #endregion
@@ -146,7 +155,7 @@ public class WeaponHandler : MonoBehaviour
     {
         while (this._isFiring)
         {
-            this._equippedWeapon.Attack();
+            this._equippedWeapon.Attack(this._isAiming);
 
             if (!this._isFirearm ||
                 !(this._equippedWeapon as Firearm).IsAuto)

@@ -22,6 +22,11 @@ public class Weapon : MonoBehaviour
     #region Properties
 
     /// <summary>
+    ///  Animation to play when the character attacks with this weapon.
+    /// </summary>
+    public AnimationClip Anim_Attack;
+
+    /// <summary>
     ///  Animation to play while a character is idle.  (Unmoving.)
     /// </summary>
     public AnimationClip Anim_Idle;
@@ -43,7 +48,7 @@ public class Weapon : MonoBehaviour
     /// <summary>
     ///  Initialization.
     /// </summary>
-    void Awake()
+    void Start()
     {
         this._log = LoggerManager.CreateLogger(typeof(Weapon));
     }
@@ -55,8 +60,8 @@ public class Weapon : MonoBehaviour
     /// <summary>
     ///  Base Attack Action, in case some types have specialized versions.
     /// </summary>
-    /// <returns></returns>
-    public virtual bool Attack()
+    /// <returns>If the attack made impact.</returns>
+    public virtual bool Attack(bool isADS = false)
     {
         this._log?.LogMessage($"Attack w/ Weapon { this.Name }.");
         return true;

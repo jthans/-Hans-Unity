@@ -685,6 +685,12 @@ MonoBehaviour:
   InventoryLookup: {fileID: 53615607}
   WeaponPacks:
   - {fileID: 1895556436}
+--- !u!1 &1340521615 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1378761201087740, guid: 9d4c6d912fd986d41bcecf7d0d266cdd,
+    type: 3}
+  m_PrefabInstance: {fileID: 2022090122}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1340521619 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4522679097070482, guid: 9d4c6d912fd986d41bcecf7d0d266cdd,
@@ -814,6 +820,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1386690867 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100142, guid: d3ae9e979292d4044aa9feab83cefce5,
+    type: 3}
+  m_PrefabInstance: {fileID: 200605419}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1392530758 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4727487805384348046, guid: c52ba461ddd600f4c865a0c092c8c1aa,
@@ -1186,6 +1198,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterAnimator: {fileID: 1029996154}
+  EntityPOV: {fileID: 1340521615}
+  WeaponAnchor: {fileID: 1386690867}
 --- !u!4 &1895556435 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1183112876622229973, guid: 819a524f92257944c96e9bdde1797b8b,
