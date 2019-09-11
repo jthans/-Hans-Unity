@@ -1084,6 +1084,7 @@ MonoBehaviour:
   Anim_Reload: {fileID: 7400000, guid: 820015aacd31a0c4fb595f0c9d3845a6, type: 3}
   ClipSize: 12
   DebuggerLineEnabled: 1
+  FOVSpeed: 0.08
   IsAuto: 0
   MuzzleObj: {fileID: 0}
   ShotAngle: 5

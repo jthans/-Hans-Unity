@@ -8,6 +8,20 @@ using UnityEngine;
 /// </summary>
 public class Firearm : Weapon
 {
+    #region Fields
+
+    /// <summary>
+    ///  If ADS is currently active.
+    /// </summary>
+    private bool _isADS;
+
+    /// <summary>
+    ///  The camera's original FOV.
+    /// </summary>
+    private float _originalFOV;
+
+    #endregion
+
     #region Properties
 
     /// <summary>
@@ -39,6 +53,11 @@ public class Firearm : Weapon
     ///  If we should render debugger lines or not.
     /// </summary>
     public bool DebuggerLineEnabled;
+
+    /// <summary>
+    ///  How quickly the FOV transitions from the player FOV to the firearm, or vice versa.
+    /// </summary>
+    public float FOVSpeed = 1.0f;
 
     /// <summary>
     ///  If this weapon is fully auto (can hold down trigger to fire.)
@@ -106,6 +125,11 @@ public class Firearm : Weapon
     /// <param name="animObj">The object to animate with the weapon, if one exists.</param>
     public override void Focus(bool isADS = false, Animation animObj = null)
     {
+        this._isADS = isADS;
+
+        var fovCoroutine = ManageFOV(isADS ? this.ADS_FOV : this._originalFOV, !isADS);
+        StartCoroutine(fovCoroutine);
+
         if (isADS)
         {
             animObj?.Play("ADS", PlayMode.StopAll);
@@ -121,6 +145,27 @@ public class Firearm : Weapon
         
         animObj?.AddClip(this.Anim_ADS, "ADS");
         this.MuzzleObj = weaponPov;
+        this._originalFOV = Camera.main.fieldOfView;
+    }
+
+    /// <summary>
+    ///  Manages the speed at which the FOV changes for this weapon, and updates the camera.
+    /// </summary>
+    /// <param name="targetFOV">FOV we're moving to.</param>
+    /// <param name="isADSInitial">What the ADS setting was when this coroutine started.</param>
+    /// <returns>Continues until the FOV is reached, or a new </returns>
+    private IEnumerator ManageFOV(float targetFOV, bool isADSInitial)
+    {
+        float fovChange = (targetFOV - Camera.main.fieldOfView) / (this.FOVSpeed / Time.fixedDeltaTime);
+        
+        // If the ADS has changed or we've reached our target, stop the routine.
+        while (isADSInitial != this._isADS &&
+              ((isADSInitial && Camera.main.fieldOfView < this._originalFOV) ||
+              (!isADSInitial && Camera.main.fieldOfView > this.ADS_FOV)))
+        {
+            Camera.main.fieldOfView += fovChange;
+            yield return null;
+        }
     }
 
 #endregion

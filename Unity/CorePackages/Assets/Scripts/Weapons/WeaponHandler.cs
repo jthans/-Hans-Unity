@@ -121,8 +121,8 @@ public class WeaponHandler : MonoBehaviour
         spawnedWeapon.transform.localRotation = Quaternion.Euler(180, 90, 90);
 
         // Equip the weapon, and assign the POV.
-        this._equippedWeapon = weaponToEquip;
-        this._isFirearm = weaponToEquip.GetType() == typeof(Firearm);
+        this._equippedWeapon = spawnedWeapon.GetComponent<Weapon>();
+        this._isFirearm = this._equippedWeapon.GetType() == typeof(Firearm);
 
         // Initialize the weapon state.
         this._equippedWeapon.Initialize(this.CharacterAnimator, this._isFirearm ? this.EntityPOV : null);
