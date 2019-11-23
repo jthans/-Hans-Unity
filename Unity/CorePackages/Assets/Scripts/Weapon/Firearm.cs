@@ -101,10 +101,12 @@ public class Firearm : Weapon
         resultantRay = this.MuzzleObj.transform.TransformDirection(resultantRay);
 
         // Perform the raycast, to see if we impact anything.
+        Entity targetEntity = null;
         RaycastHit outHit;
-        if(Physics.Raycast(pointOfShot, resultantRay, out outHit, this.ShotDistance))
+        if(Physics.Raycast(pointOfShot, resultantRay, out outHit, this.ShotDistance) &&
+            outHit.collider?.gameObject?.TryGetComponent<Entity>(out targetEntity) == true)
         {
-            Debug.Log(outHit.collider.gameObject.name);
+            targetEntity.OnImpactReceived(this.DamageAmt, outHit);
         }
 
         #if UNITY_EDITOR

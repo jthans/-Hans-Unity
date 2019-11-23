@@ -1,6 +1,8 @@
 ﻿using Assets.Scripts.Core;
 using Hans.DamageSystem;
 using Hans.DamageSystem.Models;
+using Hans.Logging;
+using Hans.Logging.Interfaces;
 
 namespace Assets.Scripts.DamageManagement
 {
@@ -15,11 +17,17 @@ namespace Assets.Scripts.DamageManagement
         /// </summary>
         private DamageController<DamageUnit> _damageController;
 
+        /// <summary>
+        ///  Logger object.
+        /// </summary>
+        private ILogger _log;
+
         #region Unity Methods
 
         protected override void Awake()
         {
             base.Awake();
+            this._log = LoggerManager.CreateLogger(typeof(DamageSystemManager));
 
             // TODO: Make this a dynamic type, instead of just the base.
             this._damageController = new DamageController<DamageUnit>();
@@ -41,7 +49,8 @@ namespace Assets.Scripts.DamageManagement
         /// <param name="damageAmt">The amount of damage to apply.</param>
         public void ApplyDamage(Entity targetEntity, DamageUnit damageAmt)
         {
-            this._damageController.ApplyDamage(targetEntity.Id, damageAmt);
+            var remainingHealth = this._damageController.ApplyDamage(targetEntity.Id, damageAmt);
+            this._log.LogMessage($"Entity { targetEntity.Id } Health Remaining: { remainingHealth.BaseHealth }");
         }
 
         /// <summary>

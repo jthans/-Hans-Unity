@@ -53,8 +53,11 @@
     <UnityVersion>2018.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Hans.DamageSystem.Local, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Hans.DamageSystem.Local.1.0.20190530.5-CI-20190530-033556\lib\net471\Hans.DamageSystem.Local.dll</HintPath>
+    <Reference Include="Hans.DamageSystem, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.DamageSystem.1.0.20191123.4-CI-20191123-033810\lib\net471\Hans.DamageSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Hans.DamageSystem.Local, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.DamageSystem.Local.1.0.20191123.1-CI-20191123-023353\lib\net471\Hans.DamageSystem.Local.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -279,9 +282,6 @@
     </Reference>
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
-    </Reference>
-    <Reference Include="Hans.DamageSystem">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DamageSystem.dll</HintPath>
     </Reference>
     <Reference Include="Hans.DependencyInjection">
       <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DependencyInjection.dll</HintPath>

@@ -109,7 +109,6 @@ namespace Assets.Scripts.InventorySystem
             if (AddItemToInventory(entityId, itemId, isPickup: true) &&
                 isEquip)
             {
-                UnityEngine.Debug.Log("ITEM" + itemId);
                 var weaponComp = EntityManager.Instance.FindEntityWithId(entityId)?.GetComponent<WeaponHandler>();
                 if (weaponComp != null &&
                     Armory.Weapons.ContainsKey(itemId))

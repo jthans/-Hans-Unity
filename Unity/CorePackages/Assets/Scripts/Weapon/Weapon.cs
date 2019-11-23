@@ -15,7 +15,7 @@ public class Weapon : MonoBehaviour
     /// <summary>
     ///  Logging class to output data about what's happening.
     /// </summary>
-    private Hans.Logging.Interfaces.ILogger _log;
+    protected Hans.Logging.Interfaces.ILogger _log;
 
     #endregion
 
@@ -35,6 +35,11 @@ public class Weapon : MonoBehaviour
     ///  Attack rate (in seconds) of the weapon, meaning how quickly you can attack with the weapon.
     /// </summary>
     public float AttackRate = 1.0f;
+
+    /// <summary>
+    ///  The amount of damage this weapon does in a single impact.
+    /// </summary>
+    public decimal DamageAmt = 20;
 
     /// <summary>
     ///  Name of the Weapon.

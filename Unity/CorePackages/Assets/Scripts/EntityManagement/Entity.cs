@@ -52,9 +52,11 @@ public class Entity : MonoBehaviour
     /// </summary>
     void Start()
     {
-        // Register the entity for damage tracking, if it hasn't been already.
-        DamageSystemManager.Instance.RegisterEntity(this);
-        
+        if (this.Damageable)
+        {
+            // Register the entity for damage tracking, if it hasn't been already.
+            DamageSystemManager.Instance.RegisterEntity(this);
+        }
     }
 
     #endregion
@@ -67,7 +69,22 @@ public class Entity : MonoBehaviour
     /// <param name="deathArgs"></param>
     public void OnEntityDeath(object sender, System.EventArgs deathArgs)
     {
-        
+        Debug.Log($"{ this.Id } DEAD.");
+    }
+
+    /// <summary>
+    ///  Event that occurs when an impact is recieved by this entity.  We'll damage/show effects, etc.
+    /// </summary>
+    /// <param name="dmgAmount">How much damage is associated with this impact.</param>
+    /// <param name="raycastHit">The hit that occured, to indicate where we impacted.</param>
+    /// <param name="inflictingEntity">The entity that dealt this damage.</param>
+    public void OnImpactReceived(decimal dmgAmount, RaycastHit raycastHit, Entity inflictingEntity = null)
+    {
+        if (this.Damageable)
+        {
+            // TODO: Dynamic Damage Type!
+            DamageSystemManager.Instance.ApplyDamage(this, new Hans.DamageSystem.Models.DamageUnit() { BaseHealth = dmgAmount });
+        }
     }
 
     #endregion
