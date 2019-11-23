@@ -67,7 +67,7 @@ public class Entity : MonoBehaviour
     ///  Placeholder for what happens when an entity dies.
     /// </summary>
     /// <param name="deathArgs"></param>
-    public void OnEntityDeath(object sender, System.EventArgs deathArgs)
+    public void OnEntityDeath()
     {
         Debug.Log($"{ this.Id } DEAD.");
     }

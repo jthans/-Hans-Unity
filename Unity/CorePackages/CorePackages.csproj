@@ -74,6 +74,7 @@
     <Compile Include="Assets\Scripts\DamageManagement\DamageSystemManager.cs" />
     <Compile Include="Assets\Scripts\EntityManagement\Entities\Player.cs" />
     <Compile Include="Assets\Scripts\EntityManagement\Entity.cs" />
+    <Compile Include="Assets\Scripts\EntityManagement\EntityManager.cs" />
     <Compile Include="Assets\Scripts\EntityManagement\IDComponent.cs" />
     <Compile Include="Assets\Scripts\Enums\Direction.cs" />
     <Compile Include="Assets\Scripts\Enums\ItemType.cs" />

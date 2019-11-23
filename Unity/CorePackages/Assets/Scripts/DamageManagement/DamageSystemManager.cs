@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Core;
 using Hans.DamageSystem;
+using Hans.DamageSystem.Events;
 using Hans.DamageSystem.Models;
 using Hans.Logging;
 using Hans.Logging.Interfaces;
@@ -61,9 +62,23 @@ namespace Assets.Scripts.DamageManagement
         public void RegisterEntity(Entity entityRef)
         {
             this._damageController.DamageManager.BeginTrackingDamage(entityRef.Id, entityRef.StartHealth);
-            this._damageController.OnEntityDeath += entityRef.OnEntityDeath;
+            this._damageController.OnEntityDeath += this.OnEntityDeath;
         }
 
         #endregion
+
+        /// <summary>
+        ///  When an entity dies, we need to call the appropriate death handler.
+        /// </summary>
+        /// <param name="sender">Sender that has declared "death".</param>
+        /// <param name="deathArgs">The event arguments we're subscribing to.</param>
+        private void OnEntityDeath(object sender, System.EventArgs deathArgs)
+        {
+            var affectedEntity = (deathArgs as EntityDeathEventArgs)?.EntityId;
+            if (affectedEntity != null)
+            {
+                EntityManager.Instance.FindEntityWithId(affectedEntity)?.GetComponent<Entity>()?.OnEntityDeath();
+            }
+        }
     }
 }
