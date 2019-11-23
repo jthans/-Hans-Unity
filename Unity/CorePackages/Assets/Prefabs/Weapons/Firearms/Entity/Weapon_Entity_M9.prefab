@@ -1071,7 +1071,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1659048414886986500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da1a83c88a6eb04d9784726eff6409d, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b7176f72f203dd4ca6e0e10a9f4bf4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Anim_Attack: {fileID: 7400000, guid: 2b76556cb3d8fc54c8f7326d9ea39129, type: 3}
@@ -1079,15 +1079,15 @@ MonoBehaviour:
   AttackRate: 1
   Name: Weapon_Pistol_M9
   ADS_FOV: 30
-  ADS_ShotAngle: 2
+  ADS_ShotAngle: 5
   Anim_ADS: {fileID: 7400000, guid: 130ece790fea33545b431199e529f2d6, type: 3}
   Anim_Reload: {fileID: 7400000, guid: 820015aacd31a0c4fb595f0c9d3845a6, type: 3}
   ClipSize: 12
   DebuggerLineEnabled: 1
-  FOVSpeed: 0.08
+  FOVSpeed: 0.1
   IsAuto: 0
   MuzzleObj: {fileID: 0}
-  ShotAngle: 5
+  ShotAngle: 20
   ShotDistance: 20
 --- !u!1 &1659048414887000608
 GameObject:

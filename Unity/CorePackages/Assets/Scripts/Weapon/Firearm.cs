@@ -104,7 +104,7 @@ public class Firearm : Weapon
         RaycastHit outHit;
         if(Physics.Raycast(pointOfShot, resultantRay, out outHit, this.ShotDistance))
         {
-
+            Debug.Log(outHit.collider.gameObject.name);
         }
 
         #if UNITY_EDITOR

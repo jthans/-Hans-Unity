@@ -89,6 +89,9 @@
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\InventoryLookupTable.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\ObtainableItem.cs" />
     <Compile Include="Assets\Scripts\InventorySystem\Item Management\Weapons\WeaponPack.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Firearm.cs" />
+    <Compile Include="Assets\Scripts\Weapon\Weapon.cs" />
+    <Compile Include="Assets\Scripts\Weapon\WeaponHandler.cs" />
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a3/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
     </Reference>
