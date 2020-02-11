@@ -59,7 +59,7 @@ namespace Assets.Editor
         /// <returns>If it's safe to proceed with clearing a document. (Unsaved changes present, and user approves to ignore.)</returns>
         private bool CheckForUnsavedChanges()
         {
-            return this.isDirty &&
+            return !this.isDirty ||
                     EditorUtility.DisplayDialog($"Unsaved Changes", $"Are you sure you want to proceed without saving changes?", "Ignore Changes and Continue", "Cancel");
         }
 
@@ -68,6 +68,8 @@ namespace Assets.Editor
         /// </summary>
         private void InitializeContextMenus()
         {
+            GUILayout.BeginHorizontal();
+
             // File Menu
             if (GUILayout.Button("File", EditorStyles.miniButtonLeft))
             {
@@ -79,6 +81,9 @@ namespace Assets.Editor
 
                 contextMenu.ShowAsContext();
             }
+
+            this.AddCustomContextMenus();
+            GUILayout.EndHorizontal();
         }
 
         /// <summary>
@@ -104,17 +109,20 @@ namespace Assets.Editor
             {
                 string filePath = EditorUtility.OpenFilePanel("Open File", "", this.fileExtension);
 
-                try
+                if (!string.IsNullOrWhiteSpace(filePath))
                 {
-                    this.isDirty = false;
+                    try
+                    {
+                        this.isDirty = false;
 
-                    string fileContents = File.ReadAllText(filePath);
-                    this.OpenTemplateSelected(fileContents);
-                }
-                catch (Exception ex)
-                {
-                    this.NewTemplate();
-                    EditorUtility.DisplayDialog("ERROR", "Exception encountered opening file.  Ensure it's the proper file type, and that the file is not corrupted.", "OK", null);
+                        string fileContents = File.ReadAllText(filePath);
+                        this.OpenTemplateSelected(fileContents);
+                    }
+                    catch (Exception ex)
+                    {
+                        this.NewTemplate();
+                        EditorUtility.DisplayDialog("ERROR", "Exception encountered opening file.  Ensure it's the proper file type, and that the file is not corrupted.", "OK", null);
+                    }
                 }
             }
         }
@@ -149,6 +157,14 @@ namespace Assets.Editor
         #endregion
 
         #region Virtual Methods
+
+        /// <summary>
+        ///  Overriden to allow the user to add further context menus to the application.
+        /// </summary>
+        protected virtual void AddCustomContextMenus()
+        {
+
+        }
 
         /// <summary>
         ///  Overriden to clear the utility when the NEW functionality has been requested.
