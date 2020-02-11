@@ -61,6 +61,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Editor\DialogueUtil\ScriptBuilderWindow.cs" />
     <Compile Include="Assets\Scripts\Constants\AmmoLocation.cs" />
     <Compile Include="Assets\Scripts\Constants\ButtonNames.cs" />
     <Compile Include="Assets\Scripts\Constants\Tags.cs" />
@@ -324,9 +325,6 @@
     <Reference Include="Hans.DamageSystem">
       <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DamageSystem.dll</HintPath>
     </Reference>
-    <Reference Include="Hans.DamageSystem.Redis">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DamageSystem.Redis.dll</HintPath>
-    </Reference>
     <Reference Include="Hans.DependencyInjection">
       <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DependencyInjection.dll</HintPath>
     </Reference>
@@ -362,9 +360,6 @@
     </Reference>
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
-    </Reference>
-    <Reference Include="Hans.Redis">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Redis.dll</HintPath>
     </Reference>
     <Reference Include="TeamDev.Redis">
       <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/TeamDev.Redis.dll</HintPath>
@@ -715,7 +710,9 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a3/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Editor\DialogueUtil\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
