@@ -63,6 +63,8 @@
   <ItemGroup>
     <Compile Include="Assets\Editor\DialogueUtil\DialogueManagerEditor.cs" />
     <Compile Include="Assets\Editor\DialogueUtil\ScriptBuilderWindow.cs" />
+    <Compile Include="Assets\Editor\EditorTools.cs" />
+    <Compile Include="Assets\Editor\StandardFileManagementWindow.cs" />
     <Compile Include="Assets\Scripts\Constants\AmmoLocation.cs" />
     <Compile Include="Assets\Scripts\Constants\ButtonNames.cs" />
     <Compile Include="Assets\Scripts\Constants\Tags.cs" />

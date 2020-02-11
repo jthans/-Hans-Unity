@@ -22,7 +22,8 @@ public class DialogueManagerEditor : Editor
         // If the user selects the "ScriptBuilder" option, open the script management utility.
         if (GUILayout.Button("ScriptBuilder", EditorStyles.miniButton))
         {
-            ScriptBuilderWindow.Init();
+            var scriptBuilder = new ScriptBuilderWindow();
+            scriptBuilder.Init();
         }
     }
 

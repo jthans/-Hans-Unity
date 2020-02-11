@@ -1,15 +1,16 @@
-﻿using UnityEditor;
+﻿using Assets.Editor;
+using UnityEditor;
 using UnityEngine;
 
 #if UNITY_EDITOR
 
 [ExecuteInEditMode]
-public class ScriptBuilderWindow : EditorWindow
+public class ScriptBuilderWindow : StandardFileManagementWindow
 {
-    [MenuItem("Window/ScriptBuilder")]
-    public static void Init()
+    public override void OnGUI()
     {
-        EditorWindow.GetWindow(typeof(ScriptBuilderWindow)).Show();
+        // Perform all base actions first, such as menu construction, etc.
+        base.OnGUI();
     }
 }
 
