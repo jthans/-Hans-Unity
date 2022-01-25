@@ -53,6 +53,33 @@
     <UnityVersion>2018.2.8f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hans.DamageSystem, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.DamageSystem.Local.1.0.20200330.14-CI-20200330-221511\lib\net471\Hans.DamageSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Hans.DamageSystem.Local, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.DamageSystem.Local.1.0.20200330.14-CI-20200330-221511\lib\net471\Hans.DamageSystem.Local.dll</HintPath>
+    </Reference>
+    <Reference Include="Hans.DependencyInjection.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.DependencyInjection.Standard.1.0.0-CI-20200331-224613\lib\net471\Hans.DependencyInjection.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="Hans.DialogueEngine.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.DialogueEngine.Standard.1.0.0-CI-20200331-224613\lib\netstandard2.0\Hans.DialogueEngine.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="Hans.Extensions.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.Extensions.Standard.1.0.0-CI-20200331-224613\lib\net471\Hans.Extensions.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="Hans.Inventory.Core, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.Inventory.Core.1.0.20200330.14-CI-20200330-221511\lib\net471\Hans.Inventory.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Hans.JSON.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.JSON.Standard.1.0.0-CI-20200331-224613\lib\netstandard2.0\Hans.JSON.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="Hans.Logging.Standard, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Hans.Logging.Standard.1.0.0-CI-20200331-224613\lib\net471\Hans.Logging.Standard.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -325,21 +352,6 @@
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a3/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Hans.DamageSystem">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DamageSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Hans.DependencyInjection">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.DependencyInjection.dll</HintPath>
-    </Reference>
-    <Reference Include="Hans.Extensions">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Hans.Inventory.Core">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Inventory.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Hans.Logging">
-      <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Hans.Logging.Unity">
       <HintPath>C:/Users/taylo/Documents/Coding/-Hans-Unity/Unity/CorePackages/Assets/NuGet/Hans.Logging.Unity.dll</HintPath>
@@ -714,7 +726,9 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.3.0a3/Editor/Data/MonoBleedingEdge/lib/mono/unityscript/Boo.Lang.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

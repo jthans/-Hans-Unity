@@ -7,6 +7,8 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class ScriptBuilderWindow : StandardFileManagementWindow
 {
+    private bool addNewNode = false;
+
     /// <summary>
     ///  Drawn every frame, this is how we create the interactibles in the window.  Overriden, so we can 
     ///     leverage the standard file management systems as well.
@@ -15,6 +17,19 @@ public class ScriptBuilderWindow : StandardFileManagementWindow
     {
         // Perform all base actions first, such as menu construction, etc.
         base.OnGUI();
+
+        if (this.addNewNode)
+        {
+            // TODO: Node Creation Logic
+            GUILayout.BeginArea(new Rect(0, 0, 100, 100));
+
+            GUILayout.TextField("This is a test field.");
+            GUILayout.Button("Test Button");
+
+            GUILayout.EndArea();
+
+            this.addNewNode = false;
+        }
     }
 
     #region Internal Methods
@@ -39,7 +54,7 @@ public class ScriptBuilderWindow : StandardFileManagementWindow
     /// </summary>
     private void AddNode()
     {
-        // TODO: Node Creation Logic
+        this.addNewNode = true;
     }
     
     #endregion

@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="Assets\MoveMotionPack\SampleScene\Scripts\PlayManager.cs" />
     <Compile Include="Assets\Tests\Scripts\TestInventoryLookup.cs" />
+    <None Include="app.config" />
     <None Include="Assets\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpecTransp.shader" />
     <None Include="Assets\MoveMotionPack\SampleScene\Shaders\DiffuseReflectiveShader.shader" />
     <None Include="Assets\MoveMotionPack\SampleScene\Shaders\ReflectiveDiffuseSpec.shader" />
