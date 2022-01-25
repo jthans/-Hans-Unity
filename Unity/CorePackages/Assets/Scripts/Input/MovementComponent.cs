@@ -142,12 +142,16 @@
         /// <summary>
         ///  Called when a collion is considered "stayed" or consistent. This tells us that our object is on the ground, and isn't considered floating.
         /// </summary>
-        void OnCollisionStay()
+        void OnCollisionStay(Collision collisionInfo)
         {
-            if (!this._isJumping)
+            if (!this._isJumping && 
+                !this._isGrounded &&
+                collisionInfo.contacts.Length == 1) // Player is "grounded" when only their feet is touching the ground.
             {
                 this._isGrounded = true;
                 this._numJumps = 0;
+
+                this.GetComponent<Rigidbody>().velocity = Vector3.zero; // Reset velocity, so no force lingers from jumps/boops
             }
         }
 
