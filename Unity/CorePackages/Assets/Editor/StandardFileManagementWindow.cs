@@ -118,7 +118,7 @@ namespace Assets.Editor
                         string fileContents = File.ReadAllText(filePath);
                         this.OpenTemplateSelected(fileContents);
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         this.NewTemplate();
                         EditorUtility.DisplayDialog("ERROR", "Exception encountered opening file.  Ensure it's the proper file type, and that the file is not corrupted.", "OK", null);
